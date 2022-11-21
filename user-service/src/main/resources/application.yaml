@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: user-service
+  data:
+    mongodb:
+      host: ${MONGO_URL:localhost}
+      port: ${MONGO_PORT:27017}
+      database: low_coding_platform_user
+server:
+  port: ${SERVER_PORT:8080}
+
+
+swagger:
+  project:
+    base-package: cn.ist.lowcoding.userservice.controller
+    version: version1.0
+    title: UserService
+    description: 用户管理，包括用户权限管理、部门管理和角色管理
