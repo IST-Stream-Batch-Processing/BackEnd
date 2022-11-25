@@ -14,15 +14,30 @@ import java.util.Map;
 public class FreeMakerDataModel {
     private static final String TEMPLATE_PATH = "./src/main/resources/templates";
     private static final String CLASS_PATH = "./src/main/java/com/example/streamservice/pojo";
+    private List<String> type = new ArrayList<>();
+    private List<String> name = new ArrayList<>();
+    private String className;//
+
+    public void setType(List<String> type) {
+        this.type = type;
+    }
+
+    public void setName(List<String> name) {
+        this.name = name;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
 
     public void generate(){
-        List<String> type = new ArrayList<>();
+        //测试用
         type.add("Long");
         type.add("Long");
         type.add("Integer");
         type.add("String");
         type.add("Long");
-        ArrayList<String> name = new ArrayList<>();
         name.add("userId");
         name.add("itemId");
         name.add("categoryId");
@@ -43,7 +58,7 @@ public class FreeMakerDataModel {
             }
 
             dataMap.put("classPath", "com.example.streamservice.pojo");
-            dataMap.put("className", "DataClass");
+            dataMap.put("className", className);
             dataMap.put("dataList", dataList);
 
             // step4 加载模版文件
