@@ -50,7 +50,5 @@ public class CodeGenerate {
         Class<?> clazz = urlClassLoader.loadClass("com.example.streamservice.pojo."+packName);
 
         return clazz;
-        //5.通过class对象创建实例
-
      }
 }
