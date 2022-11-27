@@ -1,6 +1,7 @@
 package ${classPath};
 
-public class ${className?cap_first} {
+public class ${className?cap_first}_${userId} {
+
 <#list dataList as data>
     private ${data.type} ${data.name};
 </#list>

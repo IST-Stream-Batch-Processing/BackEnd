@@ -1,13 +1,14 @@
-package com.example.streamservice.pojo;
+package com.example.streamservice.freemaker;
 
-public class Data {
+//数据类中的一个属性：类型和名称
+public class TypeAndName {
     private String type;
     private String name;
 
-    public Data() {
+    public TypeAndName() {
     }
 
-    public Data(String type, String name) {
+    public TypeAndName(String type, String name) {
         this.type = type;
         this.name = name;
     }
