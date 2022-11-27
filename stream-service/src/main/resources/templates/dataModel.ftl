@@ -1,15 +1,15 @@
 package ${classPath};
 
-public class ${className?cap_first}_${userId} {
+public class ${className?cap_first}_${dataId} {
 
 <#list dataList as data>
     private ${data.type} ${data.name};
 </#list>
 
-    public ${className?cap_first}(){
+    public ${className?cap_first}_${dataId}(){
     }
 
-    public ${className?cap_first}(<#list dataList as data>${data.type}  ${data.name}<#if data_has_next>,</#if></#list>){
+    public ${className?cap_first}_${dataId}(<#list dataList as data>${data.type}  ${data.name}<#if data_has_next>,</#if></#list>){
     <#list dataList as data>
         this.${data.name}=${data.name};
     </#list>

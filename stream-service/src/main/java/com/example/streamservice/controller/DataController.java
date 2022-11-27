@@ -16,7 +16,7 @@ public class DataController {
 //        fmDataModel.setClassName();
 //        fmDataModel.setType();
 //        fmDataModel.setName();
-//        fmDataModel.setUserId();
+//        fmDataModel.setDataId();
 //        fmDataModel.generate();
     }
 }

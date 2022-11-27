@@ -10,7 +10,7 @@ import java.util.List;
 public class DataDO {
     private String dataSourceId;//对应的数据源id
     private String userId;//对应的用户id
+    private String dataId;//自己的id标识
     private String className; //设置的数据名称
-    private List<String> type = new ArrayList<>();
-    private List<String> name = new ArrayList<>();
+    private List<TypeAndName> attributeList = new ArrayList<>();//注册数据类中属性类型与名称
 }
