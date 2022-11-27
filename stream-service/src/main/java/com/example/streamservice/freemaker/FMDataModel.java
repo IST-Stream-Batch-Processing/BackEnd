@@ -40,11 +40,11 @@ public class FMDataModel {
             // step4 加载模版文件
             Template template = configuration.getTemplate("dataModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + className+"_"+dataId + ".java");
+            File docFile = new File(CLASS_PATH + "\\" + className+dataId + ".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             // step6 输出文件
             template.process(dataMap, out);
-            System.out.println(className+"_"+dataId + ".java 文件创建成功 !");
+            System.out.println(className+dataId + ".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
