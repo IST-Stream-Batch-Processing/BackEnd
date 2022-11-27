@@ -20,13 +20,7 @@ public class StreamController {
     }
     @GetMapping("/generateMapCounstruct")
     public void generate(){
-        //finalType：固定为String
-        //originalType：dataSourceId对应的数据的className
-        //输入isSpilt：是否需要分割数据流
-        //是：输入分割符delimiter
-        //输入数据流中时间戳属性类型timeStampType
-        //判断是否为String
-        //是：输入数据流中时间戳属性格式regexFormat和在分割后字符串列表中的位置timeStampIndex
+        //得到MapConstructDO
 
 
     }
