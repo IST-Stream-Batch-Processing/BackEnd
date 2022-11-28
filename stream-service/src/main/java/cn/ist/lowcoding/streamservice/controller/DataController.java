@@ -1,6 +1,6 @@
-package com.example.streamservice.controller;
+package cn.ist.lowcoding.streamservice.controller;
 
-import com.example.streamservice.freemaker.FMDataModel;
+import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

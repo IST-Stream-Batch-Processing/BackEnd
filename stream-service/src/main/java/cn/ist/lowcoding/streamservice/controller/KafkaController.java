@@ -1,6 +1,6 @@
-package com.example.streamservice.controller;
+package cn.ist.lowcoding.streamservice.controller;
 
-import com.example.streamservice.config.KafkaConfig;
+import cn.ist.lowcoding.streamservice.config.KafkaConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;

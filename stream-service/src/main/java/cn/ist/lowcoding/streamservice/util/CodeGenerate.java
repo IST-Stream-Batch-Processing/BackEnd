@@ -1,4 +1,4 @@
-package com.example.streamservice.util;
+package cn.ist.lowcoding.streamservice.util;
 
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;

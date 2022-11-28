@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-com.example.streamservice.service
+    name: user-service
   data:
     mongodb:
       host: ${MONGO_URL:localhost}
@@ -12,7 +12,7 @@ server:
 
 swagger:
   project:
-    base-package: cn.ist.lowcoding.userservice.com.example.streamservice.controller
+    base-package: cn.ist.lowcoding.userservice.controller
     version: version1.0
     title: UserService
     description: 用户管理，包括用户权限管理、部门管理和角色管理

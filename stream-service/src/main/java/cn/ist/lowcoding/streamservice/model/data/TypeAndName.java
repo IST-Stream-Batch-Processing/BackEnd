@@ -1,4 +1,4 @@
-package com.example.streamservice.model.data;
+package cn.ist.lowcoding.streamservice.model.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

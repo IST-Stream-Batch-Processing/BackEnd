@@ -1,6 +1,6 @@
-package com.example.streamservice.freemaker;
+package cn.ist.lowcoding.streamservice.freemaker;
 
-import com.example.streamservice.model.data.TypeAndName;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.Data;
@@ -15,8 +15,8 @@ import java.util.Map;
 @Data
 public class FMDataModel {
     private static final String TEMPLATE_PATH = "./src/main/resources/templates";
-    private static final String CLASS_PATH = "./src/main/java/com/example/streamservice/generateClass";
-    private static final String PACKAGE_PATH = "com.example.streamservice.generateClass";
+    private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
+    private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
     private List<TypeAndName> attributes = new ArrayList<>();
     private String className;//注册的数据名

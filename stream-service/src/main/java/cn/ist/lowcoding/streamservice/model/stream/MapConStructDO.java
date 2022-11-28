@@ -1,6 +1,6 @@
-package com.example.streamservice.model.stream;
+package cn.ist.lowcoding.streamservice.model.stream;
 
-import com.example.streamservice.model.data.TypeAndIndex;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import lombok.Data;
 
 import java.util.ArrayList;

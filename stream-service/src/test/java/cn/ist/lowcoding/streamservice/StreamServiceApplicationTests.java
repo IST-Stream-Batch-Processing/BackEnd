@@ -1,12 +1,10 @@
-package com.example.streamservice;
+package cn.ist.lowcoding.streamservice;
 
 //import com.example.streamservice.service.HotItemsService;
-import com.example.streamservice.freemaker.FMDataModel;
-import com.example.streamservice.freemaker.FMMapConstruct;
-import com.example.streamservice.model.data.TypeAndIndex;
-import com.example.streamservice.model.data.TypeAndName;
-import com.example.streamservice.util.CodeGenerate;
-import org.assertj.core.util.diff.Delta;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
+import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
+import cn.ist.lowcoding.streamservice.freemaker.FMMapConstruct;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

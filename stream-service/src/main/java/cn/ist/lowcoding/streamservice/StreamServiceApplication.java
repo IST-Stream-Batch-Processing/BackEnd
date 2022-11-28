@@ -1,4 +1,4 @@
-package com.example.streamservice;
+package cn.ist.lowcoding.streamservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

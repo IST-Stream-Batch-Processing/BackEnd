@@ -1,4 +1,4 @@
-package com.example.streamservice.config;
+package cn.ist.lowcoding.streamservice.config;
 
 import org.springframework.context.annotation.Bean;
 
