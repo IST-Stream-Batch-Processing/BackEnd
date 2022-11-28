@@ -24,7 +24,7 @@ DataController : /register
 
 ### 算子
 
-#### MapConStruct
+#### MapConstruct
 
 功能：将数据流转换成对应注册数据
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class MapConStructDO extends OperatorDO{
+public class MapConstructDO extends OperatorDO{
 
     private Boolean isSpilt;//是否需要分割数据流字符串
     private String delimiter;//分隔符
@@ -16,8 +16,8 @@ public class MapConStructDO extends OperatorDO{
     private Integer timeStampIndex;//时间戳在分割后字符串列表中的位置
     private List<TypeAndIndex> dataList = new ArrayList<>();//数据属性类型与其在数据流中的对应位置
 
-    public MapConStructDO(){
-        this.setName("StreamMapConStruct");
+    public MapConstructDO(){
+        this.setName("StreamMapConstruct");
         this.generateInAndOutType();
         this.setOriginalType("String");
         this.setInputId("");
