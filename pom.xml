@@ -10,6 +10,7 @@
     <version>0.1</version>
     <modules>
         <module>common</module>
+        <module>stream-service</module>
         <module>user-service</module>
         <module>framework</module>
         <module>swagger-spring-boot-starter</module>
