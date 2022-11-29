@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: stream-service
+  data:
+    mongodb:
+      host: ${MONGO_URL:localhost}
+      port: ${MONGO_PORT:27017}
+      database: low_coding_platform_stream
+
+server:
+  port: ${SERVER_PORT:8080}
