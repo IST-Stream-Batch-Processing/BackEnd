@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class DataPO {
     @Id
-    private String dataSourceId;
+    private String id;
 
     private String userId;
 
