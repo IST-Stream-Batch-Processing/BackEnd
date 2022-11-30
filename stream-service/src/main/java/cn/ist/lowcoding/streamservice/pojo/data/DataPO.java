@@ -1,14 +1,13 @@
 package cn.ist.lowcoding.streamservice.pojo.data;
 
-import cn.ist.lowcoding.streamservice.model.data.DataDO;
+import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
-import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
-@Data
+@lombok.Data
 public class DataPO {
     @Id
     private String id;
@@ -25,13 +24,13 @@ public class DataPO {
 
     private String timeStampName;
 
-    public DataDO to() {
-        DataDO res = new DataDO();
+    public Data to() {
+        Data res = new Data();
         BeanUtils.copyProperties(this, res);
         return res;
     }
 
-    public static DataPO from(DataDO data) {
+    public static DataPO from(Data data) {
         DataPO res = new DataPO();
         BeanUtils.copyProperties(data, res);
         return res;

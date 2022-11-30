@@ -1,14 +1,12 @@
 package cn.ist.lowcoding.streamservice.service;
 
 import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
-import cn.ist.lowcoding.streamservice.model.data.DataDO;
+import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.CreateDataRequest;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class DataService {
@@ -19,7 +17,7 @@ public class DataService {
         //得到DataDO
         //存入数据库
         //用DataDO生成FMDataModel
-        DataDO data = new DataDO();
+        Data data = new Data();
         BeanUtils.copyProperties(request, data);
         FMDataModel fmDataModel = new FMDataModel();
         BeanUtils.copyProperties(data, fmDataModel);
@@ -31,7 +29,15 @@ public class DataService {
         dataRepo.deleteById(dataId);
     }
 
-    public DataDO getDataById(String userId, String dataId) {
-        return dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException(""))
+    public Data getDataById(String userId, String dataId) {
+        return dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException(""));
     }
+
+
+//
+//    private void setMapConstructFinalType() {
+//        findTargetCombinationByOperatorId()
+//
+//
+//    }
 }

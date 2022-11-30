@@ -1,7 +1,7 @@
 package cn.ist.lowcoding.streamservice.pojo.stream;
 
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
-import cn.ist.lowcoding.streamservice.model.stream.MapConstructDO;
+import cn.ist.lowcoding.streamservice.model.stream.MapConstruct;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -23,13 +23,13 @@ public class MapConstructPO extends OperatorPO {
 
     private List<TypeAndIndex> dataList = new ArrayList<>();
 
-    public MapConstructDO to() {
-        MapConstructDO res = new MapConstructDO();
+    public MapConstruct to() {
+        MapConstruct res = new MapConstruct();
         BeanUtils.copyProperties(this, res);
         return res;
     }
 
-    public static MapConstructPO from(MapConstructDO mapConstruct) {
+    public static MapConstructPO from(MapConstruct mapConstruct) {
         MapConstructPO res = new MapConstructPO();
         BeanUtils.copyProperties(mapConstruct, res);
         return res;

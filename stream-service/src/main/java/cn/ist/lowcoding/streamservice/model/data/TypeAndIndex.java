@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TypeAndIndex {
+
     private String type;//
+
     private Integer index;
+
 }

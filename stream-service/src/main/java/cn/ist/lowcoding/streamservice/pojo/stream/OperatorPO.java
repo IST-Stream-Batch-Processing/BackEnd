@@ -1,6 +1,6 @@
 package cn.ist.lowcoding.streamservice.pojo.stream;
 
-import cn.ist.lowcoding.streamservice.model.stream.OperatorDO;
+import cn.ist.lowcoding.streamservice.model.stream.Operator;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -20,13 +20,13 @@ public class OperatorPO {
 
     private String outputId;
 
-    public OperatorDO to() {
-        OperatorDO res = new OperatorDO();
+    public Operator to() {
+        Operator res = new Operator();
         BeanUtils.copyProperties(this, res);
         return res;
     }
 
-    public static OperatorPO from(OperatorDO operator) {
+    public static OperatorPO from(Operator operator) {
         OperatorPO res = new OperatorPO();
         BeanUtils.copyProperties(operator, res);
         return res;

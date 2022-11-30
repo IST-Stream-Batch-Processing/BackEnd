@@ -3,7 +3,7 @@ package cn.ist.lowcoding.streamservice.controller;
 import cn.ist.lowcoding.common.response.Result;
 import cn.ist.lowcoding.common.util.RequestUtil;
 import cn.ist.lowcoding.common.util.ResultUtil;
-import cn.ist.lowcoding.streamservice.model.data.DataDO;
+import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.CreateDataRequest;
 import cn.ist.lowcoding.streamservice.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +33,16 @@ public class DataController {
         dataService.deleteData(RequestUtil.getUserId(), dataId);
         return ResultUtil.success();
     }
-
-    @GetMapping("/data")
-    public Result<List<DataDO>> getAllData(){
-        dataService.getAllData(RequestUtil.getUserId());
-        return ResultUtil.success();
-    }
-
-    @GetMapping("/data/{id}")
-    public Result<DataDO> getDataById(@PathVariable("id") String dataId){
-        dataService.getDataById(RequestUtil.getUserId(), dataId);
-        return ResultUtil.success();
-    }
+//
+//    @GetMapping("/data")
+//    public Result<List<Data>> getAllData(){
+//        dataService.getAllData(RequestUtil.getUserId());
+//        return ResultUtil.success();
+//    }
+//
+//    @GetMapping("/data/{id}")
+//    public Result<Data> getDataById(@PathVariable("id") String dataId){
+//        dataService.getDataById(RequestUtil.getUserId(), dataId);
+//        return ResultUtil.success();
+//    }
 }
