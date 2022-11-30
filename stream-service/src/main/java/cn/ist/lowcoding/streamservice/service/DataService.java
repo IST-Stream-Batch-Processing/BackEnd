@@ -14,13 +14,14 @@ public class DataService {
     @Autowired
     DataRepo dataRepo;
 
-    public void registerData(CreateDataRequest request) {
+    public String registerData(CreateDataRequest request) {
         //得到DataDO
         Data data = new Data();
         BeanUtils.copyProperties(request, data);
 
         //存入数据库
         dataRepo.save(data);
+        return data.getId();
     }
 
     // TODO: 如何验证用户类型是否可以删除dataDO

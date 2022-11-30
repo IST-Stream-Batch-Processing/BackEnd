@@ -18,8 +18,8 @@ public class DataController {
 
     @PostMapping("/data")
     public Result<String> registerData(@RequestBody CreateDataRequest request){
-        dataService.registerData(request);
-        return ResultUtil.success();
+        String dataId = dataService.registerData(request);
+        return ResultUtil.success(dataId);
     }
 
     @PutMapping("/data")

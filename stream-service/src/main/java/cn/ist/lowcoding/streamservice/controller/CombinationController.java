@@ -21,8 +21,8 @@ public class CombinationController {
 
     @PostMapping("/combination")
     public Result<String> registerCombination(@RequestBody CreateCombinationRequest createCombinationRequest) {
-        combinationService.registerCombination(createCombinationRequest);
-        return ResultUtil.success();
+        String combinationId = combinationService.registerCombination(createCombinationRequest);
+        return ResultUtil.success(combinationId);
     }
 
     @GetMapping("/combination")
