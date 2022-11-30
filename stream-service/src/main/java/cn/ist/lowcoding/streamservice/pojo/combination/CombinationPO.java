@@ -12,13 +12,13 @@ import java.util.List;
 @Data
 public class CombinationPO {
     @Id
-    private String id = ""; // 编排 ID
+    private String id; // 编排 ID
 
-    private String dataId = ""; // 一个编排所对应的数据源输入
+    private String dataId; // 一个编排所对应的数据源输入
 
-    private List<String> operators = new ArrayList<>(); // 一个编排下所包含的 operator id
+    private List<String> operatorIds; // 一个编排下所包含的 operator id
 
-    private List<String> finalTypes = new ArrayList<>(); // 记录每一个算子的用户输出类型
+    private List<String> finalTypes; // 记录每一个算子的用户输出类型
 
     public Combination to() {
         Combination res = new Combination();
