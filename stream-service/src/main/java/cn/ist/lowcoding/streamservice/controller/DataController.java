@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataController {
 
     @PostMapping("/registerData")
-    public void registerData(){
+    public void registerData() {
         //得到DataDO
         //存入数据库
         //用DataDO生成FMDataModel
