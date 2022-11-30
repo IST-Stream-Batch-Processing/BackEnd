@@ -33,11 +33,17 @@ public class DataController {
         dataService.deleteData(RequestUtil.getUserId(), dataId);
         return ResultUtil.success();
     }
-//
-//    @GetMapping("/data")
-//    public Result<List<Data>> getAllData(){
-//        dataService.getAllData(RequestUtil.getUserId());
-//        return ResultUtil.success();
+
+    @GetMapping("/data")
+    public Result<List<Data>> getAllData(){
+        List<Data> res = dataService.getAllData();
+        return ResultUtil.success(res);
+    }
+
+//    @GetMapping("/data/{userId}")
+//    public Result<List<Data>> getAllDataByUserId(@PathVariable String userId) {
+//        List<Data> res = dataService.getAllDataByUserId(userId);
+//        return ResultUtil.success(res);
 //    }
 //
 //    @GetMapping("/data/{id}")

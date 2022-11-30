@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TypeAndIndex {
 
-    private String type;//
+    private String type;
 
     private Integer index;
 

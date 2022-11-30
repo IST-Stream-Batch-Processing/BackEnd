@@ -23,6 +23,8 @@ public class DataRepoImpl extends AbstractBaseRepositoryImpl<Data, DataPO> imple
     protected DataPO toPO(Data data) {
         return DataPO.from(data);
     }
+
+
 //
 //    protected Combination findCombinationByOperatorId(String operatorId) {xxxxx}
 //

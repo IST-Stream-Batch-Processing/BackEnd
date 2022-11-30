@@ -1,12 +1,13 @@
 package cn.ist.lowcoding.streamservice.service;
 
-import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.CreateDataRequest;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DataService {
@@ -15,13 +16,11 @@ public class DataService {
 
     public void registerData(CreateDataRequest request) {
         //得到DataDO
-        //存入数据库
-        //用DataDO生成FMDataModel
         Data data = new Data();
         BeanUtils.copyProperties(request, data);
-        FMDataModel fmDataModel = new FMDataModel();
-        BeanUtils.copyProperties(data, fmDataModel);
-        fmDataModel.generate();
+
+        //存入数据库
+        dataRepo.save(data);
     }
 
     // TODO: 如何验证用户类型是否可以删除dataDO
@@ -31,6 +30,15 @@ public class DataService {
 
     public Data getDataById(String userId, String dataId) {
         return dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException(""));
+    }
+
+    public List<Data> getAllData() {
+
+        return dataRepo.findAll();
+    }
+
+    public List<Data> getAllDataByUserId(String userId) {
+        return null;
     }
 
 
