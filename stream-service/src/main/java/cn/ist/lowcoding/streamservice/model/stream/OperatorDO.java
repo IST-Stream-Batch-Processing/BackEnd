@@ -22,7 +22,6 @@ public class OperatorDO {
             this.inputType="DataStream";
             this.outputType="DataStream";
         }
-
     }
     public void generateInput(){
         this.input = this.inputType+"<"+this.originalType+this.inputId+">";
