@@ -10,15 +10,21 @@ public class OperatorPO {
     @Id
     private String id;
 
+    private String combinationId;
+
     private String name;
 
     private String originalType;
 
     private String finalType;
 
-//    private String inputId;
-//
-//    private String outputId;
+    private String input;
+
+    private String output;
+
+    private String inputType;
+
+    private String outputType;
 
     public Operator to() {
         Operator res = new Operator();

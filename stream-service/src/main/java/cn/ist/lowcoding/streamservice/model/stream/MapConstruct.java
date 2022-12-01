@@ -25,9 +25,9 @@ public class MapConstruct extends Operator {
 
     private Integer timeStampIndex; // 时间戳在分割后字符串列表中的位置
 
-    private List<TypeAndIndex> dataList; // 数据属性类型与其在数据流中的对应位置
+    private List<TypeAndIndex> dataList = new ArrayList<>(); // 数据属性类型与其在数据流中的对应位置
 
-    private List<TypeAndName> attributeList; // 注册数据类中属性类型与名称（自动获得）
+//    private List<TypeAndName> attributeList = new ArrayList<>(); // 注册数据类中属性类型与名称（自动获得）
 
     public MapConstruct() {
         this.setName("StreamMapConstruct");
@@ -35,14 +35,4 @@ public class MapConstruct extends Operator {
         this.setOriginalType("String");
         this.generateInput();
     }
-
-//    private getFinal() {
-//
-//        x = findTargetCombinationByOperatorId(this.getCombinationId());
-//
-//        y = findDataByCombinationId(x.getCombinationId);
-//
-//        this.setFinalType(y.classname);
-//
-//    }
 }

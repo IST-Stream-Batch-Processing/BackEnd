@@ -5,6 +5,7 @@ import cn.ist.lowcoding.common.util.ResultUtil;
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.CreateCombinationRequest;
+import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import cn.ist.lowcoding.streamservice.service.CombinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +19,7 @@ public class CombinationController {
 
     @PostMapping("/combination/{dataId}")
     public Result<String> registerCombination(@PathVariable("dataId") String dataId) {
-        // 未实现
         String combinationId = combinationService.registerCombination(dataId);
-        //TODO: 将该combinationId存入data中
 
         return ResultUtil.success(combinationId);
     }

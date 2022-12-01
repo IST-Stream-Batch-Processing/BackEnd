@@ -17,7 +17,7 @@ public class Combination {
 
     private String dataId; // 一个编排所对应的数据源输入
 
-    private List<String> operatorIds; // 一个编排下所包含的 operator id
+    private List<String> operatorIds = new ArrayList<>(); // 一个编排下所包含的 operator id
 
-    private List<String> finalTypes; // 记录每一个算子的用户输出类型
+    private List<String> finalTypes = new ArrayList<>(); // 记录每一个算子的用户输出类型
 }

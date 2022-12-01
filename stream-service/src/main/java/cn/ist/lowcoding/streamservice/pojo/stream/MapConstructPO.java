@@ -24,7 +24,7 @@ public class MapConstructPO extends OperatorPO {
 
     private List<TypeAndIndex> dataList;
 
-    private List<TypeAndName> attributeList;
+//    private List<TypeAndName> attributeList;
 
     public MapConstruct to() {
         MapConstruct res = new MapConstruct();
