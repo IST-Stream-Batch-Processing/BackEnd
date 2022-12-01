@@ -1,6 +1,7 @@
 package cn.ist.lowcoding.streamservice.pojo.stream;
 
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import cn.ist.lowcoding.streamservice.model.stream.MapConstruct;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +22,9 @@ public class MapConstructPO extends OperatorPO {
 
     private Integer timeStampIndex;
 
-    private List<TypeAndIndex> dataList = new ArrayList<>();
+    private List<TypeAndIndex> dataList;
+
+    private List<TypeAndName> attributeList;
 
     public MapConstruct to() {
         MapConstruct res = new MapConstruct();
