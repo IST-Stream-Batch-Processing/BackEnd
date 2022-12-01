@@ -2,6 +2,8 @@ package cn.ist.lowcoding.streamservice.model.stream;
 
 import lombok.Data;
 
+import java.util.stream.Stream;
+
 /**
  * Operator
  * Operator
@@ -28,6 +30,10 @@ public class Operator {
     // 根据 name
     public void generateInAndOutType() {
         if (this.name.equals("StreamMapConstruct")) {
+            this.inputType="DataStream";
+            this.outputType="DataStream";
+        }
+        else if(this.name.equals("StreamAscendingTimestamp")){
             this.inputType="DataStream";
             this.outputType="DataStream";
         }

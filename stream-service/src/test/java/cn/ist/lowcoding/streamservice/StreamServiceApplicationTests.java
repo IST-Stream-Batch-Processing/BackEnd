@@ -1,6 +1,7 @@
 package cn.ist.lowcoding.streamservice;
 
 //import com.example.streamservice.service.HotItemsService;
+import cn.ist.lowcoding.streamservice.freemaker.FMAscendingTimestamp;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
@@ -76,6 +77,16 @@ class StreamServiceApplicationTests {
         typeAndNameList.add(typeAndIndex4);
         fmMapConstruct.setDataList(typeAndNameList);
         fmMapConstruct.generate();
+    }
+
+    @Test
+    public void testAscendingTimestamp(){
+        FMAscendingTimestamp fmAscendingTimestamp = new FMAscendingTimestamp();
+        fmAscendingTimestamp.setUnit("s");
+        fmAscendingTimestamp.setTypeStampName("timeStamp");
+        fmAscendingTimestamp.setOperatorId("01");
+        fmAscendingTimestamp.setOriginalType("UserBehavior01");
+        fmAscendingTimestamp.generate();
     }
 
 
