@@ -17,7 +17,7 @@ public class Data {
 
     private String userId; // 数据源 所对应的用户 ID
 
-    private List<String> combinations; // 数据源 所对应的流程编排 ID 列表（详见 combinationDO）
+    private List<String> combinationIds; // 数据源 所对应的流程编排 ID 列表（详见 combinationDO）
 
     // TODO: Application needs update
 

@@ -8,16 +8,9 @@ import java.util.List;
 
 @Data
 public class CreateDataRequest {
-//    private String id = ""; // 数据源 ID
-
     private String filePath; // 数据源文件路径（例如 UserBehavior.csv 在服务器端的存储路径）
 
     private String userId; // 数据源 所对应的用户 ID
-
-    private List<String> combinations; // 数据源 所对应的流程编排 ID 列表（详见 combinationDO）
-
-    // TODO: Application needs update
-
 
     // 数据源对应的数据
     private String className; // 设置的数据名称

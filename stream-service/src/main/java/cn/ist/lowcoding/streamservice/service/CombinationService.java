@@ -15,14 +15,22 @@ public class CombinationService {
     @Autowired
     CombinationRepo combinationRepo;
 
-    public String registerCombination(CreateCombinationRequest createCombinationRequest) {
+    public String registerCombination(String dataId) {
         Combination combination = new Combination();
-        BeanUtils.copyProperties(createCombinationRequest, combination);
+        combination.setDataId(dataId);
         combinationRepo.save(combination);
         return combination.getId();
     }
 
     public List<Combination> getAllCombinations() {
         return combinationRepo.findAll();
+    }
+
+    public Combination getCombinationById(String combinationId) {
+        return null;
+    }
+
+    public void deleteCombinationById(String combinationId) {
+
     }
 }

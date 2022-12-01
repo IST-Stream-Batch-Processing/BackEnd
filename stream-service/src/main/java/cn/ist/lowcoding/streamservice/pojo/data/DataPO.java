@@ -16,7 +16,7 @@ public class DataPO {
 
     private String userId;
 
-    private List<String> combinations;
+    private List<String> combinationIds;
 
     private String className;
 

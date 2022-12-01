@@ -7,10 +7,7 @@ import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.CreateCombinationRequest;
 import cn.ist.lowcoding.streamservice.service.CombinationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,16 +16,46 @@ public class CombinationController {
     @Autowired
     CombinationService combinationService;
 
-    @PostMapping("/combination")
-    public Result<String> registerCombination(@RequestBody CreateCombinationRequest createCombinationRequest) {
-        String combinationId = combinationService.registerCombination(createCombinationRequest);
+    @PostMapping("/combination/{dataId}")
+    public Result<String> registerCombination(@PathVariable("dataId") String dataId) {
+        // 未实现
+        String combinationId = combinationService.registerCombination(dataId);
+        //TODO: 将该combinationId存入data中
+
         return ResultUtil.success(combinationId);
     }
 
     @GetMapping("/combination")
     public Result<List<Combination>> getAllCombinations(){
+        //未测试
         List<Combination> res = combinationService.getAllCombinations();
         return ResultUtil.success(res);
     }
 
+    @GetMapping("/combination/{id}")
+    public Result<Combination> getCombinationById(@PathVariable("id") String combinationId) {
+        //未实现
+        Combination res = combinationService.getCombinationById(combinationId);
+        return ResultUtil.success(res);
+    }
+
+    @GetMapping("/combination/{dataId}")
+    public Result<List<Combination>> getAllCombinationsByDataId(@PathVariable String dataId) {
+        //未实现
+        return null;
+    }
+
+    @DeleteMapping("/combination/{id}")
+    public Result<String> deleteCombinationById(@PathVariable String combinationId) {
+        // 未实现
+        combinationService.deleteCombinationById(combinationId);
+
+        //TODO: 更新combination对应的data
+
+        //TODO: 删除combination中包含的所有operator
+
+        return ResultUtil.success();
+    }
+
+    //TODO: 更新方法待定
 }
