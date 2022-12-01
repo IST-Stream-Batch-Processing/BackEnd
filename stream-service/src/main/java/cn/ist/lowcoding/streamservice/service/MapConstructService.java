@@ -31,6 +31,7 @@ public class MapConstructService extends OperatorService {
 
         MapConstruct mapConstruct = new MapConstruct();
         mapConstruct.setFinalType(className);
+        mapConstruct.generateOutput();
 //        mapConstruct.setAttributeList(data.get().getAttributeList());
         mapConstruct.setCombinationId(combinationId);
 

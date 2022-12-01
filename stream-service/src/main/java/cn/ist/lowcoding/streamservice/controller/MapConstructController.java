@@ -31,12 +31,16 @@ public class MapConstructController {
         return ResultUtil.success(res);
     }
 
-//    @GetMapping("/mapConstruct")
-//    public Result<MapConstruct> getAllMapConstructs() {
-//        List<Operator> res = mapConstructService.getAllOperators();
+    @GetMapping("/mapConstruct")
+    public Result<String> getAllMapConstructs() {
+        List<Operator> res = mapConstructService.getAllOperators();
+        Operator operator = res.get(0);
+        System.out.println("operator: "+operator.toString());
+        MapConstruct mapConstruct = (MapConstruct) operator;
+        System.out.println("mapConstruct: "+mapConstruct.toString());
 //        MapConstruct mapConstruct = (MapConstruct) res.get(0);
-//        return ResultUtil.success(mapConstruct);
-//    }
+        return ResultUtil.success("");
+    }
 
     @DeleteMapping("/mapConstruct/{id}")
     public Result<String> deleteMapConstructById(@PathVariable String mapConstructId) {

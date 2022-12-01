@@ -35,6 +35,10 @@ public class Operator {
             this.inputType="DataStream";
             this.outputType="DataStream";
         }
+        else if(this.name.equals("StreamAscendingTimestamp")){
+            this.inputType="DataStream";
+            this.outputType="DataStream";
+        }
     }
 
     public void generateInput() {
