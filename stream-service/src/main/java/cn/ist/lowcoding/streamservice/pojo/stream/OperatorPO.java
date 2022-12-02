@@ -8,7 +8,9 @@ import org.springframework.data.annotation.Id;
 @Data
 public class OperatorPO {
     @Id
-    private String operatorId;
+    private String id;
+
+    private String combinationId;
 
     private String name;
 
@@ -16,9 +18,13 @@ public class OperatorPO {
 
     private String finalType;
 
-    private String inputId;
+    private String input;
 
-    private String outputId;
+    private String output;
+
+    private String inputType;
+
+    private String outputType;
 
     public Operator to() {
         Operator res = new Operator();

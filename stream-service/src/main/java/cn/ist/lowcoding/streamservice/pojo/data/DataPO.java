@@ -12,9 +12,11 @@ public class DataPO {
     @Id
     private String id;
 
+    private String filePath;
+
     private String userId;
 
-    private String dataId;
+    private List<String> combinationIds;
 
     private String className;
 

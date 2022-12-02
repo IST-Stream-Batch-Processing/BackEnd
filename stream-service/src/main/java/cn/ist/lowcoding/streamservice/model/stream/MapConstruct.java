@@ -1,6 +1,7 @@
 package cn.ist.lowcoding.streamservice.model.stream;
 
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -26,27 +27,12 @@ public class MapConstruct extends Operator {
 
     private List<TypeAndIndex> dataList = new ArrayList<>(); // 数据属性类型与其在数据流中的对应位置
 
+//    private List<TypeAndName> attributeList = new ArrayList<>(); // 注册数据类中属性类型与名称（自动获得）
 
     public MapConstruct() {
         this.setName("StreamMapConstruct");
         this.generateInAndOutType();
         this.setOriginalType("String");
         this.generateInput();
-
-        this.setFinalType("");
-        this.generateOutput();
-
-        // final相关
-        //
     }
-
-//    private getFinal() {
-//
-//        x = findTargetCombinationByOperatorId(this.getCombinationId());
-//
-//        y = findDataByCombinationId(x.getCombinationId);
-//
-//        this.setFinalType(y.classname);
-//
-//    }
 }

@@ -8,7 +8,9 @@ import cn.ist.lowcoding.streamservice.pojo.data.DataPO;
 import cn.ist.lowcoding.streamservice.repository.CombinationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CombinationRepoImpl extends AbstractBaseRepositoryImpl<Combination, CombinationPO> implements CombinationRepo {
     protected CombinationRepoImpl(@Autowired  MongoTemplate mongoTemplate) {
         super(mongoTemplate);

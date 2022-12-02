@@ -5,12 +5,12 @@ import lombok.Data;
 @Data
 public class AscendingTimestamp extends Operator{
 
-    private String typeStampName;//时间戳名(下拉列表可选择)
+    private String timeStampName;//时间戳名，后端给
 
-    private String unit;//时间戳单位（下拉列表可选择，ms,s,min）
+    private String unit;//时间戳单位
 
     public AscendingTimestamp(){
-
+        this.setName("StreamAscendingTimestamp");
+        this.generateInAndOutType();
     }
-
 }

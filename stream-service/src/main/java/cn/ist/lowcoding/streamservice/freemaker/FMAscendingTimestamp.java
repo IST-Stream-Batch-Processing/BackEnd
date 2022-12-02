@@ -8,23 +8,19 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-//有序数据流：提出时间戳和水位线
 @Data
+//有序数据流：提出时间戳和水位线
 public class FMAscendingTimestamp {
     private static final String TEMPLATE_PATH = "./src/main/resources/templates";
     private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
-    private String operatorId;//算子标识
     private String originalType;//输入数据流类型
-    private String typeStampName;//时间戳名
+    private String operatorId;
+    private String timeStampName;//时间戳名
     private String unit;//时间戳单位
 
     public void generate (){
-
-//        String originalType = "DataClass";
-//        String timeStampName = "timestamp";
-//        String unit = "ms";
 
         Configuration configuration = new Configuration();
         // step3 创建数据模型
@@ -38,11 +34,10 @@ public class FMAscendingTimestamp {
             // step5 生成数据
             File docFile = new File(CLASS_PATH + "\\" + "StreamAscendingTimestamp"+operatorId+".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
-
             dataMap.put("packagePath", PACKAGE_PATH);
-            dataMap.put("originalType",originalType);
-            dataMap.put("timeStampName",typeStampName);
             dataMap.put("operatorId",operatorId);
+            dataMap.put("originalType",originalType);
+            dataMap.put("timeStampName",timeStampName);
             dataMap.put("unit",unit);
 
             template.process(dataMap, out);

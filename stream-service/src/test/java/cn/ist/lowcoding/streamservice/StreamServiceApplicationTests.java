@@ -83,7 +83,7 @@ class StreamServiceApplicationTests {
     public void testAscendingTimestamp(){
         FMAscendingTimestamp fmAscendingTimestamp = new FMAscendingTimestamp();
         fmAscendingTimestamp.setUnit("s");
-        fmAscendingTimestamp.setTypeStampName("timeStamp");
+        fmAscendingTimestamp.setTimeStampName("timeStamp");
         fmAscendingTimestamp.setOperatorId("01");
         fmAscendingTimestamp.setOriginalType("UserBehavior01");
         fmAscendingTimestamp.generate();
