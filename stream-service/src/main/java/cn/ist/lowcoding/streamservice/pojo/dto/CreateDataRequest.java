@@ -3,7 +3,6 @@ package cn.ist.lowcoding.streamservice.pojo.dto;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data

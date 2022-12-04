@@ -20,9 +20,22 @@ public class DataController {
     @ApiOperation(value = "注册数据源")
     @PostMapping("/data")
     public Result<String> registerData(@RequestBody CreateDataRequest request){
-        // 已测试
         String dataId = dataService.registerData(request);
         return ResultUtil.success(dataId);
+    }
+
+    @ApiOperation(value = "获取所有数据源")
+    @GetMapping("/data")
+    public Result<List<Data>> getAllData(){
+        List<Data> res = dataService.getAllData();
+        return ResultUtil.success(res);
+    }
+
+    @ApiOperation(value = "获取指定的数据源")
+    @GetMapping("/data/{id}")
+    public Result<Data> getDataById(@PathVariable("id") String dataId){
+        Data res = dataService.getDataById(RequestUtil.getUserId(), dataId);
+        return ResultUtil.success(res);
     }
 
     @PutMapping("/data")
@@ -34,30 +47,15 @@ public class DataController {
 
     @DeleteMapping("/data/{id}")
     public Result<String> deleteData(@PathVariable("id") String dataId){
-        // 已测试
+        // 未实现
         dataService.deleteData(RequestUtil.getUserId(), dataId);
         return ResultUtil.success();
-    }
-
-    @ApiOperation(value = "获取所有数据源")
-    @GetMapping("/data")
-    public Result<List<Data>> getAllData(){
-        // 已测试
-        List<Data> res = dataService.getAllData();
-        return ResultUtil.success(res);
     }
 
     @GetMapping("/data/user/{userId}")
     public Result<List<Data>> getAllDataByUserId(@PathVariable String userId) {
         // 未实现
         List<Data> res = dataService.getAllDataByUserId(userId);
-        return ResultUtil.success(res);
-    }
-
-    @GetMapping("/data/{id}")
-    public Result<Data> getDataById(@PathVariable("id") String dataId){
-        // 未测试
-        Data res = dataService.getDataById(RequestUtil.getUserId(), dataId);
         return ResultUtil.success(res);
     }
 }

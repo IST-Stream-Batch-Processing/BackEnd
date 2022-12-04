@@ -24,6 +24,13 @@ public class DataService {
         return data.getId();
     }
 
+    public List<Data> getAllData() {
+        return dataRepo.findAll();
+    }
+
+    public Data getDataById(String userId, String dataId) {
+        return dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+    }
 
     public void deleteData(String userId, String dataId) {
         // TODO: 如何验证用户类型是否可以删除dataDO
@@ -32,21 +39,11 @@ public class DataService {
         dataRepo.deleteById(dataId);
     }
 
-    public Data getDataById(String userId, String dataId) {
-        return dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("getDataById()抛出的异常"));
-    }
-
-    public List<Data> getAllData() {
-
-        return dataRepo.findAll();
+    public void updateData(CreateDataRequest request) {
     }
 
     public List<Data> getAllDataByUserId(String userId) {
         //从getAllData()获取所有Data，再遍历寻找相同的userId
         return null;
     }
-
-    public void updateData(CreateDataRequest request) {
-    }
-
 }
