@@ -1,6 +1,8 @@
 package cn.ist.lowcoding.streamservice.service;
 
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
+import cn.ist.lowcoding.streamservice.model.data.Data;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import cn.ist.lowcoding.streamservice.model.stream.FilterDataClassOne;
 import cn.ist.lowcoding.streamservice.model.stream.Operator;
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateFilterDataClassOneRequest;
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FilterDataClassOneService {
+public class FilterDataClassOneService extends OperatorService {
     @Autowired
     CombinationRepo combinationRepo;
     @Autowired
@@ -27,32 +29,28 @@ public class FilterDataClassOneService {
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
         String lastOperatorId = operatorIds.get(operatorIds.size()-1);
-        Operator operator = operatorRepo.findById(lastOperatorId).get();
+        Operator operator = operatorRepo.findById(lastOperatorId).orElseThrow(() -> new RuntimeException("找不到对应的算子"));
         String operatorFinalType = operator.getFinalType();
+
+        String dataId = combination.getDataId();
+        Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+        List<TypeAndName> attributeList = data.getAttributeList();
 
         FilterDataClassOneVO filterDataClassOneVO = new FilterDataClassOneVO();
         filterDataClassOneVO.setOriginalType(operatorFinalType);
         filterDataClassOneVO.setFinalType(operatorFinalType);
+        filterDataClassOneVO.setAttributeList(attributeList);
         return  filterDataClassOneVO;
     }
 
-    public String registerfilterDataClassOne(CreateFilterDataClassOneRequest request) {
+    public String registerFilterDataClassOne(CreateFilterDataClassOneRequest request) {
         FilterDataClassOne filterDataClassOne = new FilterDataClassOne();
-
         BeanUtils.copyProperties(request, filterDataClassOne);
+        filterDataClassOne.generateInput();
         filterDataClassOne.generateOutput();
         operatorRepo.save(filterDataClassOne);
 
-        String combinationId = filterDataClassOne.getCombinationId();
-        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
-
-        List<String> operatorIds = combination.getOperatorIds();
-        operatorIds.add(filterDataClassOne.getId());
-
-        List<String> finalTypes = combination.getFinalTypes();
-        finalTypes.add(filterDataClassOne.getFinalType());
-
-        combinationRepo.save(combination);
+        registerOperatorToCombination(filterDataClassOne);
 
         return filterDataClassOne.getId();
     }

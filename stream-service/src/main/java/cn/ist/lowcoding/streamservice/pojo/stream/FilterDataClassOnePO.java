@@ -1,12 +1,11 @@
 package cn.ist.lowcoding.streamservice.pojo.stream;
 
 import cn.ist.lowcoding.streamservice.model.stream.FilterDataClassOne;
-import cn.ist.lowcoding.streamservice.model.stream.MapConstruct;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 @Data
-public class FilterDataClassOnePO {
+public class FilterDataClassOnePO extends OperatorPO {
 
     private String filterName;//筛选目标属性名称
 

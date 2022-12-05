@@ -23,7 +23,7 @@ public class FilterDataClassOneController {
 
     @PostMapping("/filterDataClassOne")
     public Result<String> registerFilterDataClassOneConstruct(@RequestBody CreateFilterDataClassOneRequest request){
-        String mapConstructId = filterDataClassOneService.registerfilterDataClassOne(request);
+        String mapConstructId = filterDataClassOneService.registerFilterDataClassOne(request);
         return ResultUtil.success(mapConstructId);
     }
 

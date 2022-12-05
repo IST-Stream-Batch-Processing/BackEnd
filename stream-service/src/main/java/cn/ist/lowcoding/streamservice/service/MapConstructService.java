@@ -11,8 +11,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class MapConstructService extends OperatorService {
 
@@ -46,7 +44,7 @@ public class MapConstructService extends OperatorService {
         mapConstruct.generateOutput();
         operatorRepo.save(mapConstruct);
 
-        updateCombinationByOperator(mapConstruct);
+        registerOperatorToCombination(mapConstruct);
 
         return mapConstruct.getId();
     }
