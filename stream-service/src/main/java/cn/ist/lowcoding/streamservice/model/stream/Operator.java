@@ -37,7 +37,7 @@ public class Operator {
             this.inputType="DataStream";
             this.outputType="DataStream";
         }
-        else if(this.name.equals("StreamAscendingTimestamp")){
+        else if(this.name.equals("StreamAscendingTimeStamp")){
             this.inputType="DataStream";
             this.outputType="DataStream";
         }

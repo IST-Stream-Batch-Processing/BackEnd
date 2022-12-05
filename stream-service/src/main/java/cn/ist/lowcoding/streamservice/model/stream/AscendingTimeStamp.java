@@ -3,14 +3,14 @@ package cn.ist.lowcoding.streamservice.model.stream;
 import lombok.Data;
 
 @Data
-public class AscendingTimestamp extends Operator{
+public class AscendingTimeStamp extends Operator {
 
     private String timeStampName;//时间戳名，后端给
 
     private String unit;//时间戳单位
 
-    public AscendingTimestamp(){
-        this.setName("StreamAscendingTimestamp");
+    public AscendingTimeStamp(){
+        this.setName("StreamAscendingTimeStamp");
         this.generateInAndOutType();
     }
 }

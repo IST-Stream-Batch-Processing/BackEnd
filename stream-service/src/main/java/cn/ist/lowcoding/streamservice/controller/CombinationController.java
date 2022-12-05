@@ -42,8 +42,7 @@ public class CombinationController {
     //TODO: 更新方法待定
 
     @DeleteMapping("/combination/{id}")
-    public Result<String> deleteCombinationById(@PathVariable String combinationId) {
-        // 未实现
+    public Result<String> deleteCombinationById(@PathVariable("id") String combinationId) {
         combinationService.deleteCombinationById(combinationId);
         return ResultUtil.success();
     }
