@@ -1,4 +1,10 @@
 package cn.ist.lowcoding.streamservice.pojo.dto.request;
 
-public class CreateKeyByDataClassRequest {
+import lombok.Data;
+
+@Data
+public class CreateKeyByDataClassRequest extends CreateOperatorRequest {
+    private String keyName;
+
+    private String keyType;
 }

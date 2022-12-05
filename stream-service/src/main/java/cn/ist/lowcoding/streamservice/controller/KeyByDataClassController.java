@@ -16,13 +16,14 @@ public class KeyByDataClassController {
     @Autowired
     KeyByDataClassService keyByDataClassService;
 
+    @ApiOperation(value = "注册KeyByDataClass算子")
     @PostMapping("/keyByDataClass")
     public Result<String> registerKeyByDataClass(@RequestBody CreateKeyByDataClassRequest request){
         String mapConstructId = keyByDataClassService.registerKeyByDataClass(request);
         return ResultUtil.success(mapConstructId);
     }
 
-
+    @ApiOperation(value = "获取指定编排对应的KeyByDataClass算子展示表单")
     @GetMapping("/keyByDataClass/combination/{combinationId}")
     public Result<KeyByDataClassVO> getKeyByDataClassDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
         KeyByDataClassVO res = keyByDataClassService.getKeyByDataClassDisplayByCombinationId(combinationId);
