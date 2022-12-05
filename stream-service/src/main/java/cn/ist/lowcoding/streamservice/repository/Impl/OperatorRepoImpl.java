@@ -33,7 +33,7 @@ public class OperatorRepoImpl extends AbstractBaseRepositoryImpl<Operator, Opera
     protected OperatorPO toPO(Operator operator) {
         try {
             String className = operator.getClass().getName();
-            System.out.println("className:" + className);
+//            System.out.println("className:" + className);
             String[] temp = className.split("\\.");
             String simpleClassName = temp[temp.length - 1];
             Class<?> clazz = Class.forName( "cn.ist.lowcoding.streamservice.pojo.stream." + simpleClassName + "PO");

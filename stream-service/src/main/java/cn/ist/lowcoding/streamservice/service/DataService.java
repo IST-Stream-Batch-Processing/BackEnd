@@ -1,7 +1,7 @@
 package cn.ist.lowcoding.streamservice.service;
 
 import cn.ist.lowcoding.streamservice.model.data.Data;
-import cn.ist.lowcoding.streamservice.pojo.dto.CreateDataRequest;
+import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateDataRequest;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

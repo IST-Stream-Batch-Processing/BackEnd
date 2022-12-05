@@ -1,4 +1,4 @@
-package cn.ist.lowcoding.streamservice.pojo.dto;
+package cn.ist.lowcoding.streamservice.pojo.dto.request;
 
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import lombok.Data;
