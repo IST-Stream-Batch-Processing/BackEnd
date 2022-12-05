@@ -30,26 +30,6 @@ public class FMMapConstruct {
 
     public void generate(){
 
-//        String originalType = "String";
-//        String finalType = "DataClass";
-//        Boolean isSpilt = true;
-//        String delimiter = ",";
-//        String timeStampType = "String";
-//        String regexFormat = "dd/MM/yyyy:HH:mm:ss";
-//        Integer timeStampIndex = 4;
-//        List<String> type = new ArrayList<>();
-//        List<Integer> indexs = new ArrayList<>();
-//        type.add("Long");
-//        type.add("Long");
-//        type.add("Integer");
-//        type.add("String");
-//        type.add("Long");
-//        indexs.add(0);
-//        indexs.add(1);
-//        indexs.add(2);
-//        indexs.add(3);
-//        indexs.add(4);
-
         // step1 创建freeMarker配置实例
         Configuration configuration = new Configuration();
         Writer out = null;

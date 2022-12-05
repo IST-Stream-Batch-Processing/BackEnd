@@ -25,12 +25,6 @@ public class FMFilterDataClassOne {
     private String regex;//正则表达式
 
     public void generate() {
-//        String originalType = "DataClass";
-//        String type = "Long";
-//        String name = "timestamp";
-//        String value = "123456";
-//        Boolean isRegex = true;
-//        String regex ="123456";
 
         Configuration configuration = new Configuration();
         // step3 创建数据模型
