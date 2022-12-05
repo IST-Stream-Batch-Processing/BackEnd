@@ -47,4 +47,7 @@ originalType：固定为String
 ![img.png](doc-images/img-mapConstruct.png)
 ![img.png](doc-images/img-ascendingTimestamp.png)
 ![img.png](doc-images/img-filterDataClassOne.png)
+timeWindow算子keyBYDataClass可传空
 ![img.png](doc-images/img-keyByDataClass.png)
+timeWindow算子finalType可传空
+![img.png](doc-images/img-timeWindow.png)

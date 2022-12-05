@@ -26,14 +26,6 @@ public class FMWindowViewCount {
 
     public void generate(){
 
-//        //固定
-//        if(isKey){
-//            TypeAndName typeAndName = new TypeAndName();
-//            typeAndName.setName(keyName);
-//            typeAndName.setType(keyType);
-//        }
-
-
         // step1 创建freeMarker配置实例
         Configuration configuration = new Configuration();
         Writer out = null;
