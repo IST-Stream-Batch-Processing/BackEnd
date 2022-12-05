@@ -22,10 +22,6 @@ public class FMKeyByDataClass {
 
 
     public void generate() {
-//        String packagePath = "beans";
-//        String originalType = "DataClass";
-//        String keyType = "Long";
-//        String keyName = "itemId";
 
         Configuration configuration = new Configuration();
         // step3 创建数据模型
