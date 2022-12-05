@@ -1,10 +1,11 @@
 package cn.ist.lowcoding.streamservice;
 
 //import com.example.streamservice.service.HotItemsService;
-import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
-import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
+
 import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
 import cn.ist.lowcoding.streamservice.freemaker.FMMapConstruct;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -60,7 +61,7 @@ class StreamServiceApplicationTests {
         fmMapConstruct.setFinalType("UserBehavior");
         fmMapConstruct.setDataId("01");
         fmMapConstruct.setOriginalType("String");
-        fmMapConstruct.setIsSpilt(true);
+        fmMapConstruct.setIsSplit(true);
         fmMapConstruct.setDelimiter(",");
         fmMapConstruct.setTimeStampType("Long");
         List<TypeAndIndex> typeAndNameList = new ArrayList<>();

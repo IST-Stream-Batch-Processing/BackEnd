@@ -12,7 +12,7 @@ public static DataStream<${finalType?cap_first}${dataId}> process(DataStream<${o
             .map(new MapFunction<${originalType?cap_first}, ${finalType?cap_first}${dataId}>() {
                 @Override
                 public ${finalType?cap_first}${dataId} map(${originalType?cap_first} variable) throws Exception {
-                    <#if isSpilt>
+                    <#if isSplit>
                     String[] fields = variable.split("${delimiter}");
                     </#if>
                     <#if timeStampType == "String">

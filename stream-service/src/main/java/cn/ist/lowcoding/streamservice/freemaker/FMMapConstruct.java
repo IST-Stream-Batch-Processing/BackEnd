@@ -21,7 +21,7 @@ public class FMMapConstruct {
     private String originalType;//
     private String finalType;
     private String dataId;
-    private Boolean isSpilt;//是否需要分割字符串
+    private Boolean isSplit;//是否需要分割字符串
     private String delimiter;//分隔符
     private String timeStampType;//时间戳类型
     private String regexFormat;//时间戳格式
@@ -32,7 +32,7 @@ public class FMMapConstruct {
 
 //        String originalType = "String";
 //        String finalType = "DataClass";
-//        Boolean isSpilt = true;
+//        Boolean isSplit = true;
 //        String delimiter = ",";
 //        String timeStampType = "String";
 //        String regexFormat = "dd/MM/yyyy:HH:mm:ss";
@@ -64,8 +64,8 @@ public class FMMapConstruct {
             dataMap.put("finalType",finalType);
             dataMap.put("dataId",dataId);
             if(originalType.equals("String")){
-                dataMap.put("isSpilt",isSpilt);
-                if(isSpilt){
+                dataMap.put("isSplit",isSplit);
+                if(isSplit){
                     dataMap.put("delimiter",delimiter);
                 }
             }
