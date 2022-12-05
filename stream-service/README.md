@@ -48,3 +48,4 @@ originalType：固定为String
 ![img.png](doc-images/img-ascendingTimestamp.png)
 ![img.png](doc-images/img-filterDataClassOne.png)
 ![img.png](doc-images/img-keyByDataClass.png)
+![img.png](doc-images/img-timeWindow.png)
