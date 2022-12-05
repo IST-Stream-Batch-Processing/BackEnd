@@ -24,6 +24,7 @@ public class MapConstructPO extends OperatorPO {
 
 //    private List<TypeAndName> attributeList;
 
+    @Override
     public MapConstruct to() {
         MapConstruct res = new MapConstruct();
         BeanUtils.copyProperties(this, res);
