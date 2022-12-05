@@ -129,7 +129,10 @@ class StreamServiceApplicationTests {
 //        fmWindowViewCount.set
     }
 
+    @Test
+    public void testAggregate(){
 
+    }
 
 
 }

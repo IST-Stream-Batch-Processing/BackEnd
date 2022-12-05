@@ -7,10 +7,6 @@ import java.util.List;
 @Data
 public class FilterDataClassOne extends Operator{
 
-    private String originalType;//输入数据流类型
-
-    private String filterType;//筛选目标属性类型
-
     private String filterName;//筛选目标属性名称
 
     private String value;//筛选目标值

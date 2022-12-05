@@ -44,3 +44,7 @@ originalType：固定为String
   是：输入数据流中时间戳属性格式regexFormat和在分割后字符串列表中的位置timeStampIndex（从0开始）
 构造：展示时左侧为属性类型和属性名，右侧输入对应在数据流中的位置（从0开始）
 ```
+![img.png](doc-images/img-mapConstruct.png)
+![img.png](doc-images/img-ascendingTimestamp.png)
+![img.png](doc-images/img-filterDataClassOne.png)
+![img.png](doc-images/img-keyByDataClass.png)
