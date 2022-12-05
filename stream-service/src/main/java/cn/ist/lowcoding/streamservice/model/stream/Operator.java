@@ -51,7 +51,7 @@ public class Operator {
         }
         else if(this.name.equals("StreamTimeWindow")){
             this.inputType="KeyedStream";
-            this.outputType="WindowStream";
+            this.outputType="WindowedStream";
         }
     }
 

@@ -16,7 +16,7 @@ public class FMTimeWindow {
 
     private String operatorId;
     private String originalType;//输入数据流类型（keyBy后）
-    private String keyType;//key对应的属性类型
+//    private String keyType;//key对应的属性类型
     private Boolean isSlide;//是否为滑动窗口
     private String lengthUnit;//窗口长度单位：day，hour，mintue，second，millisecond
     private String length;//窗口长度
@@ -40,7 +40,7 @@ public class FMTimeWindow {
             dataMap.put("packagePath", PACKAGE_PATH);
             dataMap.put("operatorId",operatorId);
             dataMap.put("originalType",originalType);
-            dataMap.put("keyType",keyType);
+//            dataMap.put("keyType",keyType);
             dataMap.put("isSlide",isSlide);
             if(isSlide){
                 dataMap.put("intervalUnit",intervalUnit);

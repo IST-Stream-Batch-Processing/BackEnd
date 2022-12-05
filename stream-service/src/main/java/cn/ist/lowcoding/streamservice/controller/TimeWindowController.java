@@ -17,14 +17,14 @@ public class TimeWindowController {
     @Autowired
     TimeWindowService timeWindowService;
 
-    @GetMapping("/filterDataClassOne/combination/{combinationId}")
-    public Result<TimeWindowVO> getTimeWindowServiceDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
+    @GetMapping("/timeWindow/combination/{combinationId}")
+    public Result<TimeWindowVO> getTimeWindowDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
         TimeWindowVO res = timeWindowService.getTimeWindowDisplayByCombinationId(combinationId);
         return ResultUtil.success(res);
     }
 
-    @PostMapping("/filterDataClassOne")
-    public Result<String> registerTimeWindowService(@RequestBody CreateTimeWindowRequest request){
+    @PostMapping("/timeWindow")
+    public Result<String> registerTimeWindow(@RequestBody CreateTimeWindowRequest request){
         String timeWindowId = timeWindowService.registerTimeWindow(request);
         return ResultUtil.success(timeWindowId);
     }

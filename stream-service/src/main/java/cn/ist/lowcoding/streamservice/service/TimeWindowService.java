@@ -1,22 +1,18 @@
 package cn.ist.lowcoding.streamservice.service;
 
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
-import cn.ist.lowcoding.streamservice.model.data.Data;
-import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
+import cn.ist.lowcoding.streamservice.model.stream.KeyByDataClass;
 import cn.ist.lowcoding.streamservice.model.stream.Operator;
+import cn.ist.lowcoding.streamservice.model.stream.TimeWindow;
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateTimeWindowRequest;
-import cn.ist.lowcoding.streamservice.pojo.dto.response.FilterDataClassOneVO;
 import cn.ist.lowcoding.streamservice.pojo.dto.response.TimeWindowVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class TimeWindowService extends OperatorService{
-    public String registerTimeWindow(CreateTimeWindowRequest request) {
-        return null;
-    }
-
     public TimeWindowVO getTimeWindowDisplayByCombinationId(String combinationId) {
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
@@ -27,11 +23,29 @@ public class TimeWindowService extends OperatorService{
         if(preName.contains("Key")){
             String operatorFinalType = operator.getFinalType();
             timeWindowVO.setOriginalType(operatorFinalType);
-            timeWindowVO.setKey(true);
+            KeyByDataClass keyByDataClass = (KeyByDataClass)operator;
+            String keyType = keyByDataClass.getKeyType();
+            timeWindowVO.setKeyType(keyType);
         }
         else {
-            timeWindowVO.setKey(false);
+            timeWindowVO.setKeyType("");
         }
         return  timeWindowVO;
     }
+
+    public String registerTimeWindow(CreateTimeWindowRequest request) {
+        TimeWindow timeWindow = new TimeWindow();
+        BeanUtils.copyProperties(request, timeWindow);
+        timeWindow.generateInput();
+        String originalType = timeWindow.getOriginalType();
+        timeWindow.setFinalType(originalType + "," + timeWindow.getKeyType() + ",TimeWindow");
+
+        timeWindow.generateOutput();
+        operatorRepo.save(timeWindow);
+
+        registerOperatorToCombination(timeWindow);
+
+        return timeWindow.getId();
+    }
+
 }
