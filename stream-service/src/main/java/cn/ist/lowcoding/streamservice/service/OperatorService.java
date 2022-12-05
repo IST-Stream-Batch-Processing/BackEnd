@@ -6,22 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OperatorService {
     @Autowired
     OperatorRepo operatorRepo;
 
-    public Optional<Operator> getOperatorById(String operatorId) {
-        return operatorRepo.findById(operatorId);
+    public List<Operator> getAllOperators() {
+        return operatorRepo.findAll();
+    }
+
+    public Operator getOperatorById(String operatorId) {
+        return operatorRepo.findById(operatorId).orElseThrow(() -> new RuntimeException("找不到对应的算子"));
     }
 
     public void deleteOperatorById(String operatorId) {
+        // TODO: 更新相关combination
         operatorRepo.deleteById(operatorId);
-    }
-
-    public List<Operator> getAllOperators() {
-        return operatorRepo.findAll();
     }
 }

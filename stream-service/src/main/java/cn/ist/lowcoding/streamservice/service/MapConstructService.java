@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MapConstructService extends OperatorService {
@@ -23,11 +22,11 @@ public class MapConstructService extends OperatorService {
     DataRepo dataRepo;
 
     public MapConstruct getMapConstructDisplayByCombinationId(String combinationId) {
-        Optional<Combination> combination = combinationRepo.findById(combinationId);
-        String dataId = combination.get().getDataId();
+        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
+        String dataId = combination.getDataId();
 
-        Optional<Data> data = dataRepo.findById(dataId);
-        String className = data.get().getClassName();
+        Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+        String className = data.getClassName();
 
         MapConstruct mapConstruct = new MapConstruct();
         mapConstruct.setFinalType(className);
@@ -45,7 +44,7 @@ public class MapConstructService extends OperatorService {
         operatorRepo.save(mapConstruct);
 
         String combinationId = mapConstruct.getCombinationId();
-        Combination combination = combinationRepo.findById(combinationId).get();
+        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
 
         List<String> operatorIds = combination.getOperatorIds();
         operatorIds.add(mapConstruct.getId());

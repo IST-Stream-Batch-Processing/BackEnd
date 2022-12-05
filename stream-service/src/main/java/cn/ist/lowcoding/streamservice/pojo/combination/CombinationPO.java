@@ -1,12 +1,10 @@
 package cn.ist.lowcoding.streamservice.pojo.combination;
 
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
-import cn.ist.lowcoding.streamservice.pojo.data.DataPO;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data

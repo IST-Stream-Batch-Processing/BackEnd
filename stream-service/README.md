@@ -37,7 +37,7 @@ FMMapConstruct（mapConstructModel.ftl）
 ```
 finalType：dataSourceId对应的数据的className
 originalType：固定为String
-输入isSpilt：是否需要分割数据流
+输入isSplit：是否需要分割数据流
  是：输入分割符delimiter
 输入数据流中时间戳属性类型timeStampType
  判断是否为String

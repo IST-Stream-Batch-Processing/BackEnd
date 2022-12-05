@@ -1,7 +1,6 @@
 package cn.ist.lowcoding.streamservice.model.stream;
 
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
-import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.List;
 @Data
 public class MapConstruct extends Operator {
 
-    private Boolean isSpilt; // 是否需要分割数据流字符串
+    private Boolean isSplit; // 是否需要分割数据流字符串
 
     private String delimiter; // 分隔符
 
