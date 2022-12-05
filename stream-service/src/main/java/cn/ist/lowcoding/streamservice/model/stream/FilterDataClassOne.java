@@ -15,8 +15,6 @@ public class FilterDataClassOne extends Operator{
 
     private String regex;//正则表达式
 
-    private List<String> attributeList;//注册数据对应的属性类型和名称
-
     public FilterDataClassOne(){
         this.setName("StreamFilterDataClassOne");
         this.generateInAndOutType();

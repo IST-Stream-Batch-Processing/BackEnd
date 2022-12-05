@@ -16,14 +16,14 @@ public class KeyByDataClassController {
     @Autowired
     KeyByDataClassService keyByDataClassService;
 
-    @PostMapping("/mapConstruct")
+    @PostMapping("/keyByDataClass")
     public Result<String> registerKeyByDataClass(@RequestBody CreateKeyByDataClassRequest request){
         String mapConstructId = keyByDataClassService.registerKeyByDataClass(request);
         return ResultUtil.success(mapConstructId);
     }
 
 
-    @GetMapping("/mapConstruct/combination/{combinationId}")
+    @GetMapping("/keyByDataClass/combination/{combinationId}")
     public Result<KeyByDataClassVO> getKeyByDataClassDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
         KeyByDataClassVO res = keyByDataClassService.getKeyByDataClassDisplayByCombinationId(combinationId);
         return ResultUtil.success(res);

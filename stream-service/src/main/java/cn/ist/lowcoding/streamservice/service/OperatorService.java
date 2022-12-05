@@ -41,7 +41,7 @@ public class OperatorService {
         operatorRepo.deleteById(operatorId);
     }
 
-    protected void updateCombinationByOperator(Operator operator) {
+    protected void registerOperatorToCombination(Operator operator) {
         String combinationId = operator.getCombinationId();
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
 
