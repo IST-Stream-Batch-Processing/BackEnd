@@ -43,6 +43,7 @@ public class MapConstructService extends OperatorService {
     public String registerMapConstruct(CreateMapConstructRequest request) {
         MapConstruct mapConstruct = new MapConstruct();
         BeanUtils.copyProperties(request, mapConstruct);
+        mapConstruct.generateOutput();
         operatorRepo.save(mapConstruct);
 
         String combinationId = mapConstruct.getCombinationId();
