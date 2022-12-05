@@ -1,14 +1,14 @@
 package ${packagePath};
 import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.functions.timestamps.AscendingTimestampExtractor;
+import org.apache.flink.streaming.api.functions.timestamps.AscendingTimeStampExtractor;
 
-public class StreamAscendingTimestamp${operatorId} {
+public class StreamAscendingTimeStamp${operatorId} {
 
     public static DataStream<${originalType?cap_first}> process(DataStream<${originalType?cap_first}> inputStream){
         DataStream<${originalType?cap_first}> dataStream = inputStream
-            .assignTimestampsAndWatermarks(new AscendingTimestampExtractor<${originalType?cap_first}>() {
+            .assignTimeStampsAndWatermarks(new AscendingTimeStampExtractor<${originalType?cap_first}>() {
                 @Override
-                public long extractAscendingTimestamp(${originalType?cap_first} variable) {
+                public long extractAscendingTimeStamp(${originalType?cap_first} variable) {
                     <#if unit == "s">
                     return variable.get${timeStampName?cap_first}() * 1000L;
                     <#else>
