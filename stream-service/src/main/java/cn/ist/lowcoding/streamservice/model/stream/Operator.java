@@ -41,6 +41,18 @@ public class Operator {
             this.inputType="DataStream";
             this.outputType="DataStream";
         }
+        else if(this.name.equals("StreamFilterDataClassOne")){
+            this.inputType="DataStream";
+            this.outputType="DataStream";
+        }
+        else if(this.name.equals("StreamKeyByDataClass")){
+            this.inputType="DataStream";
+            this.outputType="KeyedStream";
+        }
+        else if(this.name.equals("StreamTimeWindow")){
+            this.inputType="KeyedStream";
+            this.outputType="WindowStream";
+        }
     }
 
     public void generateInput() {

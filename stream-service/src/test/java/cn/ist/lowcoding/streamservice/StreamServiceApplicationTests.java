@@ -1,11 +1,9 @@
 package cn.ist.lowcoding.streamservice;
 
 //import com.example.streamservice.service.HotItemsService;
-import cn.ist.lowcoding.streamservice.freemaker.FMAscendingTimestamp;
+import cn.ist.lowcoding.streamservice.freemaker.*;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
-import cn.ist.lowcoding.streamservice.freemaker.FMDataModel;
-import cn.ist.lowcoding.streamservice.freemaker.FMMapConstruct;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -87,6 +85,48 @@ class StreamServiceApplicationTests {
         fmAscendingTimestamp.setOperatorId("01");
         fmAscendingTimestamp.setOriginalType("UserBehavior01");
         fmAscendingTimestamp.generate();
+    }
+
+    @Test
+    public void testFilterDataClassOne(){
+        FMFilterDataClassOne fmFilterDataClassOne = new FMFilterDataClassOne();
+        fmFilterDataClassOne.setOperatorId("01");
+        fmFilterDataClassOne.setOriginalType("UserBehavior");
+        fmFilterDataClassOne.setName("behavior");
+        fmFilterDataClassOne.setType("String");
+        fmFilterDataClassOne.setIsRegex(false);
+        fmFilterDataClassOne.setValue("pv");
+        fmFilterDataClassOne.generate();
+    }
+
+    @Test
+    public void testKeyBYDataClass(){
+        FMKeyByDataClass fmKeyByDataClass = new FMKeyByDataClass();
+        fmKeyByDataClass.setOperatorId("01");
+        fmKeyByDataClass.setKeyName("itemId");
+        fmKeyByDataClass.setKeyType("Long");
+        fmKeyByDataClass.setOriginalType("UserBehavior");
+        fmKeyByDataClass.generate();
+    }
+
+    @Test
+    public void testTimeWindow(){
+       FMTimeWindow fmTimeWindow = new FMTimeWindow();
+       fmTimeWindow.setIsSlide(true);
+       fmTimeWindow.setOperatorId("01");
+       fmTimeWindow.setLength("1");
+       fmTimeWindow.setInterval("5");
+       fmTimeWindow.setLengthUnit("hour");
+       fmTimeWindow.setIntervalUnit("minute");
+       fmTimeWindow.setOriginalType("UserBehavior");
+       fmTimeWindow.setKeyType("Long");
+       fmTimeWindow.generate();
+    }
+
+    @Test
+    public void testWindowViewCount(){
+        FMWindowViewCount fmWindowViewCount = new FMWindowViewCount();
+//        fmWindowViewCount.set
     }
 
 
