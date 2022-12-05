@@ -7,6 +7,7 @@ import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateFilterDataClassOneR
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateMapConstructRequest;
 import cn.ist.lowcoding.streamservice.pojo.dto.response.FilterDataClassOneVO;
 import cn.ist.lowcoding.streamservice.service.FilterDataClassOneService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +16,18 @@ public class FilterDataClassOneController {
     @Autowired
     FilterDataClassOneService filterDataClassOneService;
 
+    @ApiOperation(value = "注册FilterDataClassOne算子")
     @GetMapping("/filterDataClassOne/combination/{combinationId}")
     public Result<FilterDataClassOneVO> getFilterDataClassOneDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
         FilterDataClassOneVO res = filterDataClassOneService.getFilterDataClassOneDisplayByCombinationId(combinationId);
         return ResultUtil.success(res);
     }
 
+    @ApiOperation(value = "获取指定编排对应的FilterDataClassOne算子展示表单")
     @PostMapping("/filterDataClassOne")
-    public Result<String> registerFilterDataClassOneConstruct(@RequestBody CreateFilterDataClassOneRequest request){
-        String mapConstructId = filterDataClassOneService.registerFilterDataClassOne(request);
-        return ResultUtil.success(mapConstructId);
+    public Result<String> registerFilterDataClassOne(@RequestBody CreateFilterDataClassOneRequest request){
+        String filterDataClassOneId = filterDataClassOneService.registerFilterDataClassOne(request);
+        return ResultUtil.success(filterDataClassOneId);
     }
 
 }

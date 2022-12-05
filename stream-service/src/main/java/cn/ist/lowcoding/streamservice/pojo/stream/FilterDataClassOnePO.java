@@ -15,6 +15,7 @@ public class FilterDataClassOnePO extends OperatorPO {
 
     private String regex;//正则表达式
 
+    @Override
     public FilterDataClassOne to() {
         FilterDataClassOne res = new FilterDataClassOne();
         BeanUtils.copyProperties(this, res);

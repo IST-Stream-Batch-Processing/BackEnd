@@ -18,9 +18,9 @@ public class FMDataModel {
     private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
-    private List<TypeAndName> attributes = new ArrayList<>();
+    private List<TypeAndName> attributeList = new ArrayList<>();
     private String className;//注册的数据名
-    private String dataId="";//注册数据的id
+    private String id ="";//注册数据的id
 
     public void generate(){
         // step1 创建freeMarker配置实例
@@ -34,17 +34,17 @@ public class FMDataModel {
 
             dataMap.put("classPath", PACKAGE_PATH);
             dataMap.put("className", className);
-            dataMap.put("dataId", dataId);
-            dataMap.put("dataList", attributes);
+            dataMap.put("dataId", id);
+            dataMap.put("dataList", attributeList);
 
             // step4 加载模版文件
             Template template = configuration.getTemplate("dataModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + className+dataId + ".java");
+            File docFile = new File(CLASS_PATH + "\\" + className+ id + ".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             // step6 输出文件
             template.process(dataMap, out);
-            System.out.println(className+dataId + ".java 文件创建成功 !");
+            System.out.println(className+ id + ".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

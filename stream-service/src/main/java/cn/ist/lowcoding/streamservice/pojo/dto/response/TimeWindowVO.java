@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TimeWindowVO extends OperatorVO{
-    private boolean isKey;
+    private String keyType;
 }

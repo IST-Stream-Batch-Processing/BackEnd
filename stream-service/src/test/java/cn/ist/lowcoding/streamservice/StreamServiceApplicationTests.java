@@ -2,10 +2,14 @@ package cn.ist.lowcoding.streamservice;
 
 //import com.example.streamservice.service.HotItemsService;
 import cn.ist.lowcoding.streamservice.freemaker.*;
+import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
+import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,38 +21,34 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class StreamServiceApplicationTests {
+    @Autowired
+    DataRepo dataRepo;
 
     @Test
     public void test() throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-//        FreeMakerDataModel freeMakerDataModel = new FreeMakerDataModel();
-//        freeMakerDataModel.generate();
-//        CodeGenerate codeGenerate = new CodeGenerate();
-//
-//        String dataName = "DataClass.java";
-//        codeGenerate.javac(dataName);
-//        String pathName = "DataClass";
-//        Class<?> clazz = codeGenerate.java(pathName);
-//        Object object = clazz.newInstance();
-//        System.out.println(object);
+
+
     }
 
     @Test
     public void testFMDataModel(){
         FMDataModel fmDataModel = new FMDataModel();
-        fmDataModel.setClassName("UserBehavior");
-        fmDataModel.setDataId("01");
-        List<TypeAndName> attributeList = new ArrayList<>();
-        TypeAndName typeAndName = new TypeAndName("Long","userId");
-        attributeList.add(typeAndName);
-        TypeAndName typeAndName1 = new TypeAndName("Long","itemId");
-        attributeList.add(typeAndName1);
-        TypeAndName typeAndName2 = new TypeAndName("Integer","categoryId");
-        attributeList.add(typeAndName2);
-        TypeAndName typeAndName3 = new TypeAndName("String","behavior");
-        attributeList.add(typeAndName3);
-        TypeAndName typeAndName4 = new TypeAndName("Long","timeStamp");
-        attributeList.add(typeAndName4);
-        fmDataModel.setAttributes(attributeList);
+        Data data = dataRepo.findById("638da9c8fece611588ed4e4c").orElseThrow(() -> new RuntimeException(""));
+        BeanUtils.copyProperties(data, fmDataModel);
+//        fmDataModel.setClassName("UserBehavior");
+//        fmDataModel.setId("01");
+//        List<TypeAndName> attributeList = new ArrayList<>();
+//        TypeAndName typeAndName = new TypeAndName("Long","userId");
+//        attributeList.add(typeAndName);
+//        TypeAndName typeAndName1 = new TypeAndName("Long","itemId");
+//        attributeList.add(typeAndName1);
+//        TypeAndName typeAndName2 = new TypeAndName("Integer","categoryId");
+//        attributeList.add(typeAndName2);
+//        TypeAndName typeAndName3 = new TypeAndName("String","behavior");
+//        attributeList.add(typeAndName3);
+//        TypeAndName typeAndName4 = new TypeAndName("Long","timeStamp");
+//        attributeList.add(typeAndName4);
+//        fmDataModel.setAttributeList(attributeList);
         fmDataModel.generate();
     }
 
@@ -133,6 +133,4 @@ class StreamServiceApplicationTests {
     public void testAggregate(){
 
     }
-
-
 }

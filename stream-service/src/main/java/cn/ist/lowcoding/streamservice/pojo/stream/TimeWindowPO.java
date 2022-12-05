@@ -6,7 +6,20 @@ import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 @Data
-public class TimeWindowPO {
+public class TimeWindowPO extends OperatorPO {
+    private Boolean isSlide;
+
+    private String lengthUnit;
+
+    private String length;
+
+    private String intervalUnit;
+
+    private String interval;
+
+    private String keyType;
+
+    @Override
     public TimeWindow to() {
         TimeWindow res = new TimeWindow();
         BeanUtils.copyProperties(this, res);
