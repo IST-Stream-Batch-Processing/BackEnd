@@ -4,6 +4,7 @@ import cn.ist.lowcoding.streamservice.model.combination.Combination;
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.repository.CombinationRepo;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
+import cn.ist.lowcoding.streamservice.repository.OperatorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class CombinationService {
 
     @Autowired
     DataRepo dataRepo;
+
+    @Autowired
+    OperatorRepo operatorRepo;
 
     public String registerCombination(String dataId) {
         Combination combination = new Combination();
@@ -41,8 +45,20 @@ public class CombinationService {
     }
 
     public void deleteCombinationById(String combinationId) {
-        //TODO: 更新combination对应的data
+        // 删除编排中包含的所有算子
+        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
+        List<String> operatorIds = combination.getOperatorIds();
+        for (String operatorId : operatorIds) {
+            operatorRepo.deleteById(operatorId);
+        }
 
-        //TODO: 删除combination中包含的所有operator
+        // 更新编排对应的数据源
+        String dataId = combination.getDataId();
+        Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+        List<String> combinationIds = data.getCombinationIds();
+        combinationIds.remove(combinationId);
+        dataRepo.save(data);
+
+        combinationRepo.deleteById(combinationId);
     }
 }
