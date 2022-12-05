@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 @Data
 public class AscendingTimeStampPO extends OperatorPO{
 
-    private String typeStampName;//时间戳名
+    private String timeStampName;//时间戳名
 
     private String unit;//时间戳单位
 

@@ -40,4 +40,17 @@ public class OperatorService {
 
         operatorRepo.deleteById(operatorId);
     }
+
+    protected void updateCombinationByOperator(Operator operator) {
+        String combinationId = operator.getCombinationId();
+        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
+
+        List<String> operatorIds = combination.getOperatorIds();
+        operatorIds.add(operator.getId());
+
+        List<String> finalTypes = combination.getFinalTypes();
+        finalTypes.add(operator.getFinalType());
+
+        combinationRepo.save(combination);
+    }
 }

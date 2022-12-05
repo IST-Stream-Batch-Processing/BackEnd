@@ -46,16 +46,7 @@ public class MapConstructService extends OperatorService {
         mapConstruct.generateOutput();
         operatorRepo.save(mapConstruct);
 
-        String combinationId = mapConstruct.getCombinationId();
-        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
-
-        List<String> operatorIds = combination.getOperatorIds();
-        operatorIds.add(mapConstruct.getId());
-
-        List<String> finalTypes = combination.getFinalTypes();
-        finalTypes.add(mapConstruct.getFinalType());
-
-        combinationRepo.save(combination);
+        updateCombinationByOperator(mapConstruct);
 
         return mapConstruct.getId();
     }
