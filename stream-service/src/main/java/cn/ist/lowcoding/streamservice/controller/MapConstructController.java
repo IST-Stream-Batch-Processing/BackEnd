@@ -3,7 +3,8 @@ package cn.ist.lowcoding.streamservice.controller;
 import cn.ist.lowcoding.common.response.Result;
 import cn.ist.lowcoding.common.util.ResultUtil;
 import cn.ist.lowcoding.streamservice.model.stream.MapConstruct;
-import cn.ist.lowcoding.streamservice.pojo.dto.CreateMapConstructRequest;
+import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateMapConstructRequest;
+import cn.ist.lowcoding.streamservice.pojo.dto.response.MapConstructVO;
 import cn.ist.lowcoding.streamservice.service.MapConstructService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,10 @@ public class MapConstructController {
     // TODO: 删除方法未实现
     // TODO: 更新方法待定
 
+    @ApiOperation(value = "获取指定编排对应的MapConstruct算子展示表单")
     @GetMapping("/mapConstruct/combination/{combinationId}")
-    public Result<MapConstruct> getMapConstructDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
-        MapConstruct res = mapConstructService.getMapConstructDisplayByCombinationId(combinationId);
+    public Result<MapConstructVO> getMapConstructDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
+        MapConstructVO res = mapConstructService.getMapConstructDisplayByCombinationId(combinationId);
         return ResultUtil.success(res);
     }
 }
