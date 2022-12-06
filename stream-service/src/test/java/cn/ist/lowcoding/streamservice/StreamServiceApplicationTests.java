@@ -119,7 +119,6 @@ class StreamServiceApplicationTests {
        fmTimeWindow.setLengthUnit("hour");
        fmTimeWindow.setIntervalUnit("minute");
        fmTimeWindow.setOriginalType("UserBehavior");
-       fmTimeWindow.setKeyType("Long");
        fmTimeWindow.generate();
     }
 

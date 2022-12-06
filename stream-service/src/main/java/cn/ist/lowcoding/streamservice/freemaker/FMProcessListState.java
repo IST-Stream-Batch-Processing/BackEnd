@@ -19,6 +19,7 @@ public class FMProcessListState {
     private String keyType = "Long";//固定,以窗口结束时间为key
     private String Math = "Math";//固定
     private String min = "min";//固定
+    private String itemViewCounts = "itemViewCounts";
     private String finalType;
     private Boolean isTop;//是否全部输出前N
     private int topSize;
@@ -44,6 +45,7 @@ public class FMProcessListState {
             dataMap.put("operatorId",operatorId);
             dataMap.put("finalType",finalType);
             dataMap.put("keyType",keyType);
+            dataMap.put("itemViewCounts",itemViewCounts);
             dataMap.put("isTop",isTop);
             if(isTop){
                 dataMap.put("topSize",topSize);
