@@ -10,10 +10,16 @@ import java.util.List;
 @Data
 public class WindowViewCount extends Operator {
 
-    private String className;
+    private String className = "WindowViewCount";
 
-    private Boolean isKey;//是否有key
     private String keyType;//key类型
+
     private String keyName;//key名称
+
     private List<TypeAndName> attributes = new ArrayList<>();
+
+    public WindowViewCount(){
+        this.setName("WindowViewCount");
+        this.generateInAndOutType();
+    }
 }
