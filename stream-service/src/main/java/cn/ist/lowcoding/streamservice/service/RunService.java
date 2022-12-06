@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,17 +29,15 @@ public class RunService {
     @Autowired
     OperatorRepo operatorRepo;
 
-    public void start(String combinationId) {
+    public void generate(String combinationId) {
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
         String dataId = combination.getDataId();
         Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
-        CodeGenerate codeGenerate = new CodeGenerate();
         FMDataModel fmDataModel = new FMDataModel();
         BeanUtils.copyProperties(data, fmDataModel);
         fmDataModel.setId("");
         fmDataModel.generate();
-        codeGenerate.javac(data.getClassName() + ".java");
 
         List<Operator> operators = new ArrayList<>();
 
@@ -54,7 +55,6 @@ public class RunService {
 //                finalType = finalType + dataId;
 //                fmMapConstruct.setFinalType(finalType);
                 fmMapConstruct.generate();
-                codeGenerate.javac("StreamMapConstruct"+operatorId + ".java");
 
             }
             else if(name.equals("StreamAscendingTimeStamp")){
@@ -65,7 +65,6 @@ public class RunService {
 //                originalType = originalType + dataId;
 //                fmAscendingTimeStamp.setOriginalType(originalType);
                 fmAscendingTimeStamp.generate();
-                codeGenerate.javac("StreamAscendingTimeStamp"+operatorId + ".java");
             }
             else if(name.equals("StreamFilterDataClassOne")){
                 FilterDataClassOne filterDataClassOne = (FilterDataClassOne) operator;
@@ -76,7 +75,6 @@ public class RunService {
 //                originalType = originalType +dataId;
 //                fmFilterDataClassOne.setOriginalType(originalType);
                 fmFilterDataClassOne.generate();
-                codeGenerate.javac("StreamFilterDataClassOne"+operatorId + ".java");
             }
             else if(name.equals("StreamKeyByDataClass")){
                 KeyByDataClass keyByDataClass = (KeyByDataClass) operator;
@@ -86,14 +84,12 @@ public class RunService {
 //                originalType = originalType + dataId;
 //                fmKeyByDataClass.setOriginalType(originalType);
                 fmKeyByDataClass.generate();
-                codeGenerate.javac("StreamKeyByDataClass"+operatorId + ".java");
             }
             else if(name.equals("StreamTimeWindow")){
                 TimeWindow timeWindow = (TimeWindow) operator;
                 FMTimeWindow fmTimeWindow = new FMTimeWindow();
                 BeanUtils.copyProperties(timeWindow,fmTimeWindow);
                 fmTimeWindow.generate();
-                codeGenerate.javac("StreamTimeWindow"+operatorId + ".java");
             }
             else if(name.equals("WindowViewCount")){
                 WindowViewCount windowViewCount = (WindowViewCount) operator;
@@ -101,17 +97,68 @@ public class RunService {
                 BeanUtils.copyProperties(windowViewCount, fmWindowViewCount);
                 fmWindowViewCount.setDataId("");
                 fmWindowViewCount.generate();
-                codeGenerate.javac("WindowViewCount" + ".java");
                 operators.remove(i);
+            }
+            else if(name.equals("StreamAggregate")){
+                Aggregate aggregate = (Aggregate) operator;
+                FMAggregate fmAggregate = new FMAggregate();
+                BeanUtils.copyProperties(fmAggregate,aggregate);
+                fmAggregate.generate();
+            }
+            else if(name.equals("StreamProcessListState")){
+                ProcessListState processListState = (ProcessListState) operator;
+                FMProcessListState fmProcessListState = new FMProcessListState();
+                BeanUtils.copyProperties(fmProcessListState,processListState);
+                fmProcessListState.generate();
             }
 
         }
         FMCombination fmCombination = new FMCombination();
-        fmCombination.setId(combinationId);
         fmCombination.setStreamList(operators);
         fmCombination.generate();
-        codeGenerate.javac("StreamCombination"+combinationId+".java");
-//        codeGenerate.java()
+    }
 
+    public void compile(String combinationId) throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
+        List<String> operatorIds = combination.getOperatorIds();
+        CodeGenerate codeGenerate = new CodeGenerate();
+        String dataId = combination.getDataId();
+        Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+        codeGenerate.javac(data.getClassName()+".java");
+        int size = operatorIds.size();
+        for(int i=0;i<size;i++){
+            String operatorId = operatorIds.get(i);
+            Operator operator = operatorRepo.findById(operatorId).orElseThrow(() -> new RuntimeException("找不到对应的算子"));
+            String name = operator.getName();
+            if(name.equals("StreamMapConstruct")){
+                codeGenerate.javac("StreamMapConstruct"+operatorId + ".java");
+            }
+            else if(name.equals("StreamAscendingTimeStamp")){
+                codeGenerate.javac("StreamAscendingTimeStamp"+operatorId + ".java");
+            }
+            else if(name.equals("StreamFilterDataClassOne")){
+                codeGenerate.javac("StreamFilterDataClassOne"+operatorId + ".java");
+            }
+            else if(name.equals("StreamKeyByDataClass")){
+                codeGenerate.javac("StreamKeyByDataClass"+operatorId + ".java");
+            }
+            else if(name.equals("StreamTimeWindow")){
+                codeGenerate.javac("StreamTimeWindow"+operatorId + ".java");
+            }
+            else if(name.equals("WindowViewCount")){
+                codeGenerate.javac("WindowViewCount" + ".java");
+            }
+            else if(name.equals("StreamAggregate")){
+                codeGenerate.javac("StreamAggregate"+operatorId+".java");
+            }
+            else if(name.equals("StreamProcessListState")){
+                codeGenerate.javac("StreamProcessListState"+operatorId+".java");
+            }
+        }
+        codeGenerate.javac("StreamCombination"+combinationId+".java");
+        Class<?> clazz = codeGenerate.java("StreamCombination");
+        Object object = clazz.newInstance();
+        Method method = clazz.getMethod("run");
+        method.invoke(object,method);
     }
 }
