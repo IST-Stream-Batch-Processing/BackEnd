@@ -12,8 +12,8 @@ import java.util.Map;
 //筛选出注册数据中某一个属性为固定值的数据流
 @Data
 public class FMFilterDataClassOne {
-    private static final String TEMPLATE_PATH = "./src/main/resources/templates";
-    private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
+    private static final String TEMPLATE_PATH = "./stream-service/src/main/resources/templates";
+    private static final String CLASS_PATH = "./stream-service/src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
     private String id;//算子标识
@@ -36,7 +36,7 @@ public class FMFilterDataClassOne {
 
             Template template = configuration.getTemplate("filterDataClassOneModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + "StreamFilerDataClassOne"+id+".java");
+            File docFile = new File(CLASS_PATH + "\\" + "StreamFilterDataClassOne"+id+".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             dataMap.put("packagePath", PACKAGE_PATH);
             dataMap.put("originalType",originalType);
@@ -50,7 +50,7 @@ public class FMFilterDataClassOne {
             }
 
             template.process(dataMap, out);
-            System.out.println("StreamFilerDataClassOne"+id+".java 文件创建成功 !");
+            System.out.println("StreamFilterDataClassOne"+id+".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

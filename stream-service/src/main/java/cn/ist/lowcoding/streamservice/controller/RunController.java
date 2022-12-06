@@ -1,5 +1,6 @@
 package cn.ist.lowcoding.streamservice.controller;
 
+import cn.ist.lowcoding.common.response.Result;
 import cn.ist.lowcoding.common.util.ResultUtil;
 
 import cn.ist.lowcoding.streamservice.service.RunService;
@@ -14,7 +15,8 @@ public class RunController {
     RunService runService;
 
     @GetMapping("/run/{combinationId}")
-    public void run(@PathVariable("combinationId") String combinationId){
+    public Result<String> run(@PathVariable("combinationId") String combinationId){
         runService.start(combinationId);
+        return ResultUtil.success();
     }
 }

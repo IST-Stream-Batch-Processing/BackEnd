@@ -34,7 +34,7 @@ public class RunService {
         BeanUtils.copyProperties(data, fmDataModel);
         fmDataModel.setId("");
         fmDataModel.generate();
-        codeGenerate.javac(data.getClassName()+dataId + ".java");
+        codeGenerate.javac(data.getClassName() + ".java");
 
         List<String> operatorNames = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class RunService {
                 operatorNames.add("StreamAscendingTimeStamp"+operatorId);
             }
             else if(name.equals("StreamFilterDataClassOne")){
-                FilterDataClassOne filterDataClassOne = new FilterDataClassOne();
+                FilterDataClassOne filterDataClassOne = (FilterDataClassOne) operator;
                 FMFilterDataClassOne fmFilterDataClassOne = new FMFilterDataClassOne();
                 //type的问题
                 BeanUtils.copyProperties(filterDataClassOne,fmFilterDataClassOne);
@@ -78,7 +78,7 @@ public class RunService {
                 operatorNames.add("StreamFilterDataClassOne"+operatorId);
             }
             else if(name.equals("StreamKeyByDataClass")){
-                KeyByDataClass keyByDataClass = new KeyByDataClass();
+                KeyByDataClass keyByDataClass = (KeyByDataClass) operator;
                 FMKeyByDataClass fmKeyByDataClass = new FMKeyByDataClass();
                 BeanUtils.copyProperties(keyByDataClass,fmKeyByDataClass);
 //                String originalType = fmKeyByDataClass.getOriginalType();
@@ -89,7 +89,7 @@ public class RunService {
                 operatorNames.add("StreamKeyByDataClass"+operatorId);
             }
             else if(name.equals("StreamTimeWindow")){
-                TimeWindow timeWindow = new TimeWindow();
+                TimeWindow timeWindow = (TimeWindow) operator;
                 FMTimeWindow fmTimeWindow = new FMTimeWindow();
                 BeanUtils.copyProperties(timeWindow,fmTimeWindow);
                 fmTimeWindow.generate();

@@ -14,7 +14,7 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 
 public class CodeGenerate {
-    private static final String WRITER_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass/";
+    private static final String WRITER_PATH = "./stream-service/src/main/java/cn/ist/lowcoding/streamservice/generateClass/";
     public void javac(String dataName){
         //java编译器
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
@@ -23,7 +23,7 @@ public class CodeGenerate {
         //java文件转换到java对象，可以是多个文件
 
         Iterable<? extends JavaFileObject> it = manager.getJavaFileObjects(WRITER_PATH+dataName);
-        Iterable<String> options = Arrays.asList("-d", System.getProperty("user.dir")+"/src/main/java/cn/ist/lowcoding/streamservice");
+        Iterable<String> options = Arrays.asList("-d", System.getProperty("user.dir")+"/stream-service/src/main/java");
         //编译任务,可以编译多个文件
         JavaCompiler.CompilationTask t = compiler.getTask(null, manager, null, options, null, it);
         //执行任务
