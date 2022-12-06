@@ -26,6 +26,7 @@ public class ProcessListStateService extends OperatorService{
         if(preName.contains("Key")){
             String operatorFinalType = operator.getFinalType();
             processListStateVO.setOriginalType(operatorFinalType);
+            processListStateVO.setFinalType("String");
             //TODO:抽取Key
             KeyByDataClass keyByDataClass = (KeyByDataClass)operator;
             String keyType = keyByDataClass.getKeyType();
@@ -44,7 +45,7 @@ public class ProcessListStateService extends OperatorService{
         ProcessListState processListState = new ProcessListState();
         BeanUtils.copyProperties(request, processListState);
         processListState.generateInput();
-        processListState.setOriginalType("String");
+        processListState.setFinalType("String");
         processListState.generateOutput();
         operatorRepo.save(processListState);
 

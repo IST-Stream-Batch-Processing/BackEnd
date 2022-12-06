@@ -15,7 +15,7 @@ public class ProcessListStatePO extends OperatorPO{
 
     private Boolean isSort;//是否排序
 
-    private Boolean isSmaller;//是否从大到小排
+    private Boolean isDescending;//是否从大到小排
 
     @Override
     public ProcessListState to() {
