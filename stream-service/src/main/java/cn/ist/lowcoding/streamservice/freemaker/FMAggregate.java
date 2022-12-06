@@ -22,11 +22,6 @@ public class FMAggregate {
 
     public void generate() {
 
-//        String finalType = "ItemViewCount";
-//        String LongType = "Long";
-//        String originalType = "DataClass";
-//        String keyType = "Long";
-
         Configuration configuration = new Configuration();
         // step3 创建数据模型
         Map<String, Object> dataMap = new HashMap<String, Object>();
