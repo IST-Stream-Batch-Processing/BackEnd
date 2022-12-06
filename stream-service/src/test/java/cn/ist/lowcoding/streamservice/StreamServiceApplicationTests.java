@@ -6,6 +6,7 @@ import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
+import cn.ist.lowcoding.streamservice.util.CodeGenerate;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
@@ -21,8 +22,8 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class StreamServiceApplicationTests {
-    @Autowired
-    DataRepo dataRepo;
+//    @Autowired
+//    DataRepo dataRepo;
 
     @Test
     public void test() throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
@@ -33,33 +34,37 @@ class StreamServiceApplicationTests {
     @Test
     public void testFMDataModel(){
         FMDataModel fmDataModel = new FMDataModel();
-        Data data = dataRepo.findById("638da9c8fece611588ed4e4c").orElseThrow(() -> new RuntimeException(""));
-        BeanUtils.copyProperties(data, fmDataModel);
-//        fmDataModel.setClassName("UserBehavior");
-//        fmDataModel.setId("01");
-//        List<TypeAndName> attributeList = new ArrayList<>();
-//        TypeAndName typeAndName = new TypeAndName("Long","userId");
-//        attributeList.add(typeAndName);
-//        TypeAndName typeAndName1 = new TypeAndName("Long","itemId");
-//        attributeList.add(typeAndName1);
-//        TypeAndName typeAndName2 = new TypeAndName("Integer","categoryId");
-//        attributeList.add(typeAndName2);
-//        TypeAndName typeAndName3 = new TypeAndName("String","behavior");
-//        attributeList.add(typeAndName3);
-//        TypeAndName typeAndName4 = new TypeAndName("Long","timeStamp");
-//        attributeList.add(typeAndName4);
-//        fmDataModel.setAttributeList(attributeList);
+//        Data data = dataRepo.findById("638da9c8fece611588ed4e4c").orElseThrow(() -> new RuntimeException(""));
+        CodeGenerate codeGenerate = new CodeGenerate();
+//        fmDataModel.setId("");
+//        codeGenerate.javac(data);
+//        BeanUtils.copyProperties(data, fmDataModel);
+        fmDataModel.setClassName("UserBehavior");
+        fmDataModel.setId("01");
+        List<TypeAndName> attributeList = new ArrayList<>();
+        TypeAndName typeAndName = new TypeAndName("Long","userId");
+        attributeList.add(typeAndName);
+        TypeAndName typeAndName1 = new TypeAndName("Long","itemId");
+        attributeList.add(typeAndName1);
+        TypeAndName typeAndName2 = new TypeAndName("Integer","categoryId");
+        attributeList.add(typeAndName2);
+        TypeAndName typeAndName3 = new TypeAndName("String","behavior");
+        attributeList.add(typeAndName3);
+        TypeAndName typeAndName4 = new TypeAndName("Long","timeStamp");
+        attributeList.add(typeAndName4);
+        fmDataModel.setAttributeList(attributeList);
         fmDataModel.generate();
+        codeGenerate.javac("UserBehavior01.java");
     }
 
     @Test
     public void testFMMapConstruct(){
         FMMapConstruct fmMapConstruct = new FMMapConstruct();
-        fmMapConstruct.setOperatorId("01");
+        fmMapConstruct.setId("01");
         fmMapConstruct.setFinalType("UserBehavior");
-        fmMapConstruct.setDataId("01");
+//        fmMapConstruct.setDataId("01");
         fmMapConstruct.setOriginalType("String");
-        fmMapConstruct.setIsSpilt(true);
+        fmMapConstruct.setIsSplit(true);
         fmMapConstruct.setDelimiter(",");
         fmMapConstruct.setTimeStampType("Long");
         List<TypeAndIndex> typeAndNameList = new ArrayList<>();
@@ -82,7 +87,7 @@ class StreamServiceApplicationTests {
         FMAscendingTimeStamp fmAscendingTimeStamp = new FMAscendingTimeStamp();
         fmAscendingTimeStamp.setUnit("s");
         fmAscendingTimeStamp.setTimeStampName("timeStamp");
-        fmAscendingTimeStamp.setOperatorId("01");
+        fmAscendingTimeStamp.setId("01");
         fmAscendingTimeStamp.setOriginalType("UserBehavior01");
         fmAscendingTimeStamp.generate();
     }
@@ -90,10 +95,10 @@ class StreamServiceApplicationTests {
     @Test
     public void testFilterDataClassOne(){
         FMFilterDataClassOne fmFilterDataClassOne = new FMFilterDataClassOne();
-        fmFilterDataClassOne.setOperatorId("01");
+        fmFilterDataClassOne.setId("01");
         fmFilterDataClassOne.setOriginalType("UserBehavior");
-        fmFilterDataClassOne.setName("behavior");
-        fmFilterDataClassOne.setType("String");
+        fmFilterDataClassOne.setFilterName("behavior");
+//        fmFilterDataClassOne.setFilterType("String");
         fmFilterDataClassOne.setIsRegex(false);
         fmFilterDataClassOne.setValue("pv");
         fmFilterDataClassOne.generate();
@@ -102,7 +107,7 @@ class StreamServiceApplicationTests {
     @Test
     public void testKeyBYDataClass(){
         FMKeyByDataClass fmKeyByDataClass = new FMKeyByDataClass();
-        fmKeyByDataClass.setOperatorId("01");
+        fmKeyByDataClass.setId("01");
         fmKeyByDataClass.setKeyName("itemId");
         fmKeyByDataClass.setKeyType("Long");
         fmKeyByDataClass.setOriginalType("UserBehavior");
@@ -111,21 +116,20 @@ class StreamServiceApplicationTests {
 
     @Test
     public void testTimeWindow(){
-       FMTimeWindow fmTimeWindow = new FMTimeWindow();
-       fmTimeWindow.setIsSlide(true);
-       fmTimeWindow.setOperatorId("01");
-       fmTimeWindow.setLength("1");
-       fmTimeWindow.setInterval("5");
-       fmTimeWindow.setLengthUnit("hour");
-       fmTimeWindow.setIntervalUnit("minute");
-       fmTimeWindow.setOriginalType("UserBehavior");
-       fmTimeWindow.generate();
+//       FMTimeWindow fmTimeWindow = new FMTimeWindow();
+//       fmTimeWindow.setIsSlide(true);
+//       fmTimeWindow.setOperatorId("01");
+//       fmTimeWindow.setLength("1");
+//       fmTimeWindow.setInterval("5");
+//       fmTimeWindow.setLengthUnit("hour");
+//       fmTimeWindow.setIntervalUnit("minute");
+//       fmTimeWindow.setOriginalType("UserBehavior");
+//       fmTimeWindow.generate();
     }
 
     @Test
     public void testWindowViewCount(){
-        FMWindowViewCount fmWindowViewCount = new FMWindowViewCount();
-//        fmWindowViewCount.set
+
     }
 
     @Test

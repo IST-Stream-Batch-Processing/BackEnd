@@ -9,16 +9,16 @@ public class StreamFilerDataClassOne${operatorId} {
             .filter(new FilterFunction<${originalType?cap_first}>() {
                 @Override
                 public boolean filter(${originalType?cap_first} variable) throws Exception {
-                    <#if type == "String">
+<#--                    <#if type == "String">-->
                     <#if isRegex>
                         String regex = "${regex}";
                         return Pattern.matches(regex, variable.get${name?cap_first}());
                     <#else>
                     return variable.get${name?cap_first}().equals("${value}");
                     </#if>
-                    <#elseif type == "Long">
-                    return variable.get${name?cap_first}() == ${value};
-                    </#if>
+<#--                    <#elseif type == "Long">-->
+<#--                    return variable.get${name?cap_first}() == ${value};-->
+<#--                    </#if>-->
                 }
             });
         return filterStream;
