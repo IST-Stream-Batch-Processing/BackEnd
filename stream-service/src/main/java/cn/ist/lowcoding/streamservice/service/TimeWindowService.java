@@ -25,7 +25,9 @@ public class TimeWindowService extends OperatorService{
             timeWindowVO.setOriginalType(operatorFinalType);
             KeyByDataClass keyByDataClass = (KeyByDataClass)operator;
             String keyType = keyByDataClass.getKeyType();
+            String keyName = keyByDataClass.getKeyName();
             timeWindowVO.setKeyType(keyType);
+            timeWindowVO.setKeyName(keyName);
         }
         else {
             timeWindowVO.setKeyType("");

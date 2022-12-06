@@ -17,4 +17,6 @@ public class CreateTimeWindowRequest extends CreateOperatorRequest{
     private String interval;
 
     private String keyType;
+
+    private String keyName;
 }

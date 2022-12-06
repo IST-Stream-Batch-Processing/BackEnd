@@ -19,6 +19,8 @@ public class TimeWindowPO extends OperatorPO {
 
     private String keyType;
 
+    private String keyName;
+
     @Override
     public TimeWindow to() {
         TimeWindow res = new TimeWindow();

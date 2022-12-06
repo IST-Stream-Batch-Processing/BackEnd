@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TimeWindowVO extends OperatorVO{
     private String keyType;
+
+    private String keyName;
 }

@@ -17,6 +17,8 @@ public class TimeWindow extends Operator {
 
     private String keyType;//Key算子后才能进行TimeWindow算子操作
 
+    private String keyName;
+
     public TimeWindow(){
         this.setName("StreamTimeWindow");
         this.generateInAndOutType();
