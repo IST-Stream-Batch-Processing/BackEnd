@@ -59,7 +59,11 @@ public class StreamProcessListState${operatorId} {
             resultBuilder.append("窗口结束时间：").append(new Timestamp(timestamp - 1)).append("\n");
 
             //遍历列表，取Top n输出
+           <#if isTop>
             for(int i=0;i<${Math}.${min}(topSize,itemViewCounts.size());i++){
+           <#else>
+               for(int i=0;i<${itemViewCounts}.size();i++){
+           </#if>
                 ${originalType?cap_first} currentItemViewCount = itemViewCounts.get(i);
                 resultBuilder.append("No ").append(i+1).append(":")
                 .append(" 商品id = ").append(currentItemViewCount.getItemId())
