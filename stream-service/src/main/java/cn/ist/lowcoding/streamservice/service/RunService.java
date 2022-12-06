@@ -98,14 +98,16 @@ public class RunService {
             else if(name.equals("WindowViewCount")){
                 WindowViewCount windowViewCount = (WindowViewCount) operator;
                 FMWindowViewCount fmWindowViewCount = new FMWindowViewCount();
-                BeanUtils.copyProperties("WindowViewCount",windowViewCount);
+                BeanUtils.copyProperties(windowViewCount, fmWindowViewCount);
+                fmWindowViewCount.setDataId("");
                 fmWindowViewCount.generate();
-                codeGenerate.javac("WindowViewCount"+operatorId + ".java");
+                codeGenerate.javac("WindowViewCount" + ".java");
                 operators.remove(i);
             }
 
         }
         FMCombination fmCombination = new FMCombination();
+        fmCombination.setId(combinationId);
         fmCombination.setStreamList(operators);
         fmCombination.generate();
         codeGenerate.javac("StreamCombination"+combinationId+".java");
