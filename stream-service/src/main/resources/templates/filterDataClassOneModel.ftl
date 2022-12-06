@@ -3,7 +3,7 @@ import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import java.util.regex.Pattern;
 
-public class StreamFilerDataClassOne${operatorId} {
+public class StreamFilterDataClassOne${operatorId} {
     public static DataStream<${originalType?cap_first}> process(DataStream<${originalType?cap_first}> inputStream){
         DataStream<${originalType?cap_first}> filterStream = inputStream
             .filter(new FilterFunction<${originalType?cap_first}>() {

@@ -13,8 +13,8 @@ import java.util.Map;
 
 @Data
 public class FMMapConstruct {
-    private static final String TEMPLATE_PATH = "./src/main/resources/templates";
-    private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
+    private static final String TEMPLATE_PATH = "./stream-service/src/main/resources/templates";
+    private static final String CLASS_PATH = "./stream-service/src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
     private String id;//算子标识
@@ -42,7 +42,7 @@ public class FMMapConstruct {
             dataMap.put("originalType",originalType);
             dataMap.put("finalType",finalType);
             if(originalType.equals("String")){
-                dataMap.put("isSpilt",isSplit);
+                dataMap.put("isSplit",isSplit);
                 if(isSplit){
                     dataMap.put("delimiter",delimiter);
                 }

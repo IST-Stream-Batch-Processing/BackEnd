@@ -1,4 +1,5 @@
 package ${packagePath};
+import cn.ist.lowcoding.streamservice.generateClass.*;
 import org.apache.flink.api.common.functions.AggregateFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.WindowedStream;
@@ -6,7 +7,7 @@ import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
-public class StreamAggregate{$operatorId}   {
+public class StreamAggregate${operatorId}   {
 
     public static DataStream<${finalType?cap_first}> process(WindowedStream<${originalType?cap_first}, ${keyType?cap_first}, TimeWindow> inputsteam) {
         DataStream<${finalType?cap_first}> dataStream = inputsteam

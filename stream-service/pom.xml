@@ -8,10 +8,10 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>cn.ist.lowcoding</groupId>
     <artifactId>stream-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>stream-com.example.streamservice.service</name>
+    <name>stream-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>

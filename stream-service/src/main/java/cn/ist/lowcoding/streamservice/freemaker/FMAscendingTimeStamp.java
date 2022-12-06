@@ -11,8 +11,8 @@ import java.util.Map;
 @Data
 //有序数据流：提出时间戳和水位线
 public class FMAscendingTimeStamp {
-    private static final String TEMPLATE_PATH = "./src/main/resources/templates";
-    private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
+    private static final String TEMPLATE_PATH = "./stream-service/src/main/resources/templates";
+    private static final String CLASS_PATH = "./stream-service/src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
     private String originalType;//输入数据流类型

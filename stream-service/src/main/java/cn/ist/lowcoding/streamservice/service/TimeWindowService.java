@@ -41,7 +41,8 @@ public class TimeWindowService extends OperatorService{
         timeWindow.generateInput();
         String originalType = timeWindow.getOriginalType();
         timeWindow.setFinalType(originalType + "," + timeWindow.getKeyType() + ",TimeWindow");
-
+        timeWindow.setOriginalType(originalType + "," + timeWindow.getKeyType());
+        timeWindow.generateInput();
         timeWindow.generateOutput();
         operatorRepo.save(timeWindow);
 
