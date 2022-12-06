@@ -53,6 +53,18 @@ public class Operator {
             this.inputType="KeyedStream";
             this.outputType="WindowedStream";
         }
+        else if(this.name.equals("WindowViewCount")){
+            this.inputType="";
+            this.outputType="";
+        }
+        else if(this.name.equals("StreamAggregate")){
+            this.inputType="WindowedStream";
+            this.outputType="DataStream";
+        }
+        else if(this.name.equals("StreamProcessListState")){
+            this.inputType="DataStream";
+            this.outputType="KeyedStream";
+        }
     }
 
     public void generateInput() {
