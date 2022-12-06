@@ -9,6 +9,7 @@ import cn.ist.lowcoding.streamservice.pojo.dto.response.FilterDataClassOneVO;
 import cn.ist.lowcoding.streamservice.pojo.dto.response.TimeWindowVO;
 import cn.ist.lowcoding.streamservice.service.FilterDataClassOneService;
 import cn.ist.lowcoding.streamservice.service.TimeWindowService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,16 +18,17 @@ public class TimeWindowController {
     @Autowired
     TimeWindowService timeWindowService;
 
-    @GetMapping("/timeWindow/combination/{combinationId}")
-    public Result<TimeWindowVO> getTimeWindowDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
-        TimeWindowVO res = timeWindowService.getTimeWindowDisplayByCombinationId(combinationId);
-        return ResultUtil.success(res);
-    }
-
+    @ApiOperation(value = "注册TimeWindow算子")
     @PostMapping("/timeWindow")
     public Result<String> registerTimeWindow(@RequestBody CreateTimeWindowRequest request){
         String timeWindowId = timeWindowService.registerTimeWindow(request);
         return ResultUtil.success(timeWindowId);
     }
 
+    @ApiOperation(value = "获取指定编排对应的TimeWindow算子展示表单")
+    @GetMapping("/timeWindow/combination/{combinationId}")
+    public Result<TimeWindowVO> getTimeWindowDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
+        TimeWindowVO res = timeWindowService.getTimeWindowDisplayByCombinationId(combinationId);
+        return ResultUtil.success(res);
+    }
 }

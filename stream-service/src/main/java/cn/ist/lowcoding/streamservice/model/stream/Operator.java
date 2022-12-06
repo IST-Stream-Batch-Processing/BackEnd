@@ -62,8 +62,8 @@ public class Operator {
             this.outputType="DataStream";
         }
         else if(this.name.equals("StreamProcessListState")){
-            this.inputType="DataStream";
-            this.outputType="KeyedStream";
+            this.inputType="KeyedStream";
+            this.outputType="DataStream";
         }
     }
 

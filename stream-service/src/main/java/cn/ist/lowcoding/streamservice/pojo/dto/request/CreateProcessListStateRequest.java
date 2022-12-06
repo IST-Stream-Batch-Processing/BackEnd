@@ -8,9 +8,9 @@ public class CreateProcessListStateRequest extends CreateOperatorRequest {
 
     private Boolean isTop;//是否全部输出前N
 
-    private int topSize;
+    private Integer topSize;
 
     private Boolean isSort;//是否排序
 
-    private Boolean isSmaller;//是否从大到小排
+    private Boolean isDescending;//是否从大到小排
 }

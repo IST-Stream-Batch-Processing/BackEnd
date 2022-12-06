@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class AggregateService extends OperatorService{
     public AggregateVO getAggregateDisplayByCombinationId(String combinationId) {
-
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
         String lastOperatorId = operatorIds.get(operatorIds.size()-1);
@@ -22,6 +21,7 @@ public class AggregateService extends OperatorService{
         String keyType = windowViewCount.getKeyType();
         String className = windowViewCount.getClassName();
         String finalType = windowViewCount.getFinalType();
+
         AggregateVO aggregateVO = new AggregateVO();
         aggregateVO.setKeyType(keyType);
         aggregateVO.setOriginalType(finalType);
