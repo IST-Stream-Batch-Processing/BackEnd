@@ -16,7 +16,7 @@ public class WindowViewCount extends Operator {
 
     private String keyName;//key名称
 
-    private List<TypeAndName> attributes = new ArrayList<>();
+    private List<TypeAndName> attributeList = new ArrayList<>();
 
     public WindowViewCount(){
         this.setName("WindowViewCount");
