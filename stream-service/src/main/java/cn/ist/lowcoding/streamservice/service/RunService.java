@@ -10,8 +10,10 @@ import cn.ist.lowcoding.streamservice.repository.OperatorRepo;
 import cn.ist.lowcoding.streamservice.util.CodeGenerate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +38,13 @@ public class RunService {
         fmDataModel.generate();
         codeGenerate.javac(data.getClassName() + ".java");
 
-        List<String> operatorNames = new ArrayList<>();
+        List<Operator> operators = new ArrayList<>();
 
         int size = operatorIds.size();
         for(int i=0;i<size;i++){
             String operatorId = operatorIds.get(i);
             Operator operator = operatorRepo.findById(operatorId).orElseThrow(() -> new RuntimeException("找不到对应的算子"));
+            operators.add(operator);
             String name = operator.getName();
             if(name.equals("StreamMapConstruct")){
                 MapConstruct mapConstruct = (MapConstruct) operator;
@@ -52,7 +55,7 @@ public class RunService {
 //                fmMapConstruct.setFinalType(finalType);
                 fmMapConstruct.generate();
                 codeGenerate.javac("StreamMapConstruct"+operatorId + ".java");
-                operatorNames.add("StreamMapConstruct"+operatorId);
+
             }
             else if(name.equals("StreamAscendingTimeStamp")){
                 AscendingTimeStamp ascendingTimeStamp = (AscendingTimeStamp) operator;
@@ -63,7 +66,6 @@ public class RunService {
 //                fmAscendingTimeStamp.setOriginalType(originalType);
                 fmAscendingTimeStamp.generate();
                 codeGenerate.javac("StreamAscendingTimeStamp"+operatorId + ".java");
-                operatorNames.add("StreamAscendingTimeStamp"+operatorId);
             }
             else if(name.equals("StreamFilterDataClassOne")){
                 FilterDataClassOne filterDataClassOne = (FilterDataClassOne) operator;
@@ -75,7 +77,6 @@ public class RunService {
 //                fmFilterDataClassOne.setOriginalType(originalType);
                 fmFilterDataClassOne.generate();
                 codeGenerate.javac("StreamFilterDataClassOne"+operatorId + ".java");
-                operatorNames.add("StreamFilterDataClassOne"+operatorId);
             }
             else if(name.equals("StreamKeyByDataClass")){
                 KeyByDataClass keyByDataClass = (KeyByDataClass) operator;
@@ -86,7 +87,6 @@ public class RunService {
 //                fmKeyByDataClass.setOriginalType(originalType);
                 fmKeyByDataClass.generate();
                 codeGenerate.javac("StreamKeyByDataClass"+operatorId + ".java");
-                operatorNames.add("StreamKeyByDataClass"+operatorId);
             }
             else if(name.equals("StreamTimeWindow")){
                 TimeWindow timeWindow = (TimeWindow) operator;
@@ -94,10 +94,22 @@ public class RunService {
                 BeanUtils.copyProperties(timeWindow,fmTimeWindow);
                 fmTimeWindow.generate();
                 codeGenerate.javac("StreamTimeWindow"+operatorId + ".java");
-                operatorNames.add("StreamTimeWindow"+operatorId);
+            }
+            else if(name.equals("WindowViewCount")){
+                WindowViewCount windowViewCount = (WindowViewCount) operator;
+                FMWindowViewCount fmWindowViewCount = new FMWindowViewCount();
+                BeanUtils.copyProperties("WindowViewCount",windowViewCount);
+                fmWindowViewCount.generate();
+                codeGenerate.javac("WindowViewCount"+operatorId + ".java");
+                operators.remove(i);
             }
 
         }
+        FMCombination fmCombination = new FMCombination();
+        fmCombination.setStreamList(operators);
+        fmCombination.generate();
+        codeGenerate.javac("StreamCombination"+combinationId+".java");
+//        codeGenerate.java()
 
     }
 }
