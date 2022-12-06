@@ -16,7 +16,7 @@ public class FMAscendingTimeStamp {
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
     private String originalType;//输入数据流类型
-    private String operatorId;
+    private String id;
     private String timeStampName;//时间戳名
     private String unit;//时间戳单位
 
@@ -32,16 +32,16 @@ public class FMAscendingTimeStamp {
 
             Template template = configuration.getTemplate("ascendingTimeStampModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + "StreamAscendingTimeStamp"+operatorId+".java");
+            File docFile = new File(CLASS_PATH + "\\" + "StreamAscendingTimeStamp"+id+".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             dataMap.put("packagePath", PACKAGE_PATH);
-            dataMap.put("operatorId",operatorId);
+            dataMap.put("operatorId",id);
             dataMap.put("originalType",originalType);
             dataMap.put("timeStampName",timeStampName);
             dataMap.put("unit",unit);
 
             template.process(dataMap, out);
-            System.out.println("StreamAscendingTimeStamp"+operatorId+".java 文件创建成功 !");
+            System.out.println("StreamAscendingTimeStamp"+id+".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

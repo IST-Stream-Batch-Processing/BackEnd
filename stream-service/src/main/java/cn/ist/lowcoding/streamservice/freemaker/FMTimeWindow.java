@@ -14,7 +14,7 @@ public class FMTimeWindow {
     private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
-    private String operatorId;
+    private String id;
     private String originalType;//输入数据流类型（keyBy后）
 //    private String keyType;//key对应的属性类型
     private Boolean isSlide;//是否为滑动窗口
@@ -35,10 +35,10 @@ public class FMTimeWindow {
 
             Template template = configuration.getTemplate("timeWindowModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + "StreamTimeWindow"+operatorId+".java");
+            File docFile = new File(CLASS_PATH + "\\" + "StreamTimeWindow"+id+".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             dataMap.put("packagePath", PACKAGE_PATH);
-            dataMap.put("operatorId",operatorId);
+            dataMap.put("operatorId",id);
             dataMap.put("originalType",originalType);
 //            dataMap.put("keyType",keyType);
             dataMap.put("isSlide",isSlide);
@@ -50,7 +50,7 @@ public class FMTimeWindow {
             dataMap.put("length",length);
 
             template.process(dataMap, out);
-            System.out.println("StreamTimeWindow"+operatorId+".java 文件创建成功 !");
+            System.out.println("StreamTimeWindow"+id+".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

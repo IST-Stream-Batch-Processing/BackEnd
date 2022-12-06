@@ -17,11 +17,10 @@ public class FMMapConstruct {
     private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
-    private String operatorId;//算子标识
+    private String id;//算子标识
     private String originalType;//
     private String finalType;
-    private String dataId;
-    private Boolean isSpilt;//是否需要分割字符串
+    private Boolean isSplit;//是否需要分割字符串
     private String delimiter;//分隔符
     private String timeStampType;//时间戳类型
     private String regexFormat;//时间戳格式
@@ -38,14 +37,13 @@ public class FMMapConstruct {
             configuration.setDirectoryForTemplateLoading(new File(TEMPLATE_PATH));
             // step3 创建数据模型
             Map<String, Object> dataMap = new HashMap<String, Object>();
-            dataMap.put("operatorId",operatorId);
+            dataMap.put("operatorId",id);
             dataMap.put("packagePath",PACKAGE_PATH);
             dataMap.put("originalType",originalType);
             dataMap.put("finalType",finalType);
-            dataMap.put("dataId",dataId);
             if(originalType.equals("String")){
-                dataMap.put("isSpilt",isSpilt);
-                if(isSpilt){
+                dataMap.put("isSpilt",isSplit);
+                if(isSplit){
                     dataMap.put("delimiter",delimiter);
                 }
             }
@@ -60,11 +58,11 @@ public class FMMapConstruct {
             // step4 加载模版文件
             Template template = configuration.getTemplate("mapConstructModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + "StreamMapConstruct"+operatorId+".java");
+            File docFile = new File(CLASS_PATH + "\\" + "StreamMapConstruct"+id+".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             // step6 输出文件
             template.process(dataMap, out);
-            System.out.println("StreamMapConstruct"+operatorId+".java 文件创建成功 !");
+            System.out.println("StreamMapConstruct"+id+".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

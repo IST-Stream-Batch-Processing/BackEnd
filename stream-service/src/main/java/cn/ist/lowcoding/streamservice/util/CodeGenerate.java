@@ -23,13 +23,14 @@ public class CodeGenerate {
         //java文件转换到java对象，可以是多个文件
 
         Iterable<? extends JavaFileObject> it = manager.getJavaFileObjects(WRITER_PATH+dataName);
-        Iterable<String> options = Arrays.asList("-d", System.getProperty("user.dir")+"/src/main/java/cn/ist/lowcoding/streamservice/compileClass");
+        Iterable<String> options = Arrays.asList("-d", System.getProperty("user.dir")+"/src/main/java/cn/ist/lowcoding/streamservice");
         //编译任务,可以编译多个文件
         JavaCompiler.CompilationTask t = compiler.getTask(null, manager, null, options, null, it);
         //执行任务
         t.call();
         try {
             manager.close();
+            System.out.println(WRITER_PATH+"编译成功");
         } catch (IOException e) {
             e.printStackTrace();
         }

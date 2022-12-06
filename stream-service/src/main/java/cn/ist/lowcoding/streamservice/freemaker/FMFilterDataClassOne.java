@@ -16,10 +16,10 @@ public class FMFilterDataClassOne {
     private static final String CLASS_PATH = "./src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
-    private String operatorId;//算子标识
+    private String id;//算子标识
     private String originalType;//输入数据流类型
-    private String type;//筛选目标属性类型
-    private String name;//筛选目标属性名称
+//    private String filterType;//筛选目标属性类型
+    private String filterName;//筛选目标属性名称
     private String value;//筛选目标值
     private Boolean isRegex;//是否需要正则表达
     private String regex;//正则表达式
@@ -36,13 +36,13 @@ public class FMFilterDataClassOne {
 
             Template template = configuration.getTemplate("filterDataClassOneModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + "StreamFilerDataClassOne"+operatorId+".java");
+            File docFile = new File(CLASS_PATH + "\\" + "StreamFilerDataClassOne"+id+".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
             dataMap.put("packagePath", PACKAGE_PATH);
             dataMap.put("originalType",originalType);
-            dataMap.put("operatorId",operatorId);
-            dataMap.put("type",type);
-            dataMap.put("name",name);
+            dataMap.put("operatorId",id);
+//            dataMap.put("type",filterType);
+            dataMap.put("name",filterName);
             dataMap.put("value",value);
             dataMap.put("isRegex",isRegex);
             if(isRegex){
@@ -50,7 +50,7 @@ public class FMFilterDataClassOne {
             }
 
             template.process(dataMap, out);
-            System.out.println("StreamFilerDataClassOne"+operatorId+".java 文件创建成功 !");
+            System.out.println("StreamFilerDataClassOne"+id+".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

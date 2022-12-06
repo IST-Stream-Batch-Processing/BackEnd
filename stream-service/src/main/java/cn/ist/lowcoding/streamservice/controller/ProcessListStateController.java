@@ -16,13 +16,13 @@ public class ProcessListStateController {
     @Autowired
     ProcessListStateService processListStateService;
 
-    @GetMapping("/timeWindow/combination/{combinationId}")
+    @GetMapping("/processListState/combination/{combinationId}")
     public Result<ProcessListStateVO> getProcessListStateDisplayByCombinationId(@PathVariable("combinationId") String combinationId){
         ProcessListStateVO res = processListStateService.getProcessListStateDisplayByCombinationId(combinationId);
         return ResultUtil.success(res);
     }
 
-    @PostMapping("/timeWindow")
+    @PostMapping("/processListState")
     public Result<String> registerProcessListState(@RequestBody CreateProcessListStateRequest request){
         String processListStateId = processListStateService.registerProcessListState(request);
         return ResultUtil.success(processListStateId);
