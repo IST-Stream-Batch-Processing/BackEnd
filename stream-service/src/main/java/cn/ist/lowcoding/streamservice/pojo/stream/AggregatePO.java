@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 public class AggregatePO extends OperatorPO{
     private String keyType;//key数据类型
 
+    @Override
     public Aggregate to() {
         Aggregate res = new Aggregate();
         BeanUtils.copyProperties(this, res);
