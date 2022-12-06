@@ -1,7 +1,7 @@
 package cn.ist.lowcoding.streamservice;
 
-//import com.example.streamservice.service.HotItemsService;
 import cn.ist.lowcoding.streamservice.freemaker.*;
+import cn.ist.lowcoding.streamservice.generateClass.StreamCombination638da9ebfece611588ed4e4d;
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
@@ -26,9 +26,8 @@ class StreamServiceApplicationTests {
 //    DataRepo dataRepo;
 
     @Test
-    public void test() throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-
-
+    public void test() throws Exception {
+        StreamCombination638da9ebfece611588ed4e4d.run();
     }
 
     @Test

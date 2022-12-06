@@ -48,7 +48,7 @@ public class CodeGenerate {
         URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url});
 
         //4.通过urlClassLoader加载器调用loadClass方法传入类名动态加载class文件并获取class对象:会初始化静态块
-        Class<?> clazz = urlClassLoader.loadClass("com.example.streamservice.pojo."+packName);
+        Class<?> clazz = urlClassLoader.loadClass("cn.ist.lowcoding.streamservice.generateClass."+packName);
 
         return clazz;
      }

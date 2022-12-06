@@ -18,11 +18,12 @@ public class FMWindowViewCount {
     private static final String CLASS_PATH = "./stream-service/src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
+    private String dataId;
     private String className;
 //    private Boolean isKey;//是否有key
     private String keyType;//key类型
     private String keyName;//key名称
-    private List<TypeAndName> attributes = new ArrayList<>();
+    private List<TypeAndName> attributeList = new ArrayList<>();
 
     public void generate(){
 
@@ -35,9 +36,10 @@ public class FMWindowViewCount {
             // step3 创建数据模型
             Map<String, Object> dataMap = new HashMap<String, Object>();
 
-            dataMap.put("packagePath", PACKAGE_PATH);
+            dataMap.put("dataId", dataId);
+            dataMap.put("classPath", PACKAGE_PATH);
             dataMap.put("className", className);
-            dataMap.put("dataList", attributes);
+            dataMap.put("dataList", attributeList);
 
             // step4 加载模版文件
             Template template = configuration.getTemplate("dataModel.ftl");

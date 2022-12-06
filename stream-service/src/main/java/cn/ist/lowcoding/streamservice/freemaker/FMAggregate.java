@@ -14,7 +14,7 @@ public class FMAggregate {
     private static final String CLASS_PATH = "./stream-service/src/main/java/cn/ist/lowcoding/streamservice/generateClass";
     private static final String PACKAGE_PATH = "cn.ist.lowcoding.streamservice.generateClass";
 
-    private String operatorId;
+    private String id;
     private String finalType; //固定（直接写入.ftl报错）
     private String LongType = "Long"; //固定（直接写入.ftl报错）
     private String originalType;//输入数据流类型(keyby后)
@@ -32,16 +32,16 @@ public class FMAggregate {
 
             Template template = configuration.getTemplate("aggregateModel.ftl");
             // step5 生成数据
-            File docFile = new File(CLASS_PATH + "\\" + "StreamAggregate"+operatorId+".java");
+            File docFile = new File(CLASS_PATH + "\\" + "StreamAggregate"+ id +".java");
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
-            dataMap.put("operatorId",operatorId);
+            dataMap.put("operatorId", id);
             dataMap.put("packagePath", PACKAGE_PATH);
             dataMap.put("originalType",originalType);
             dataMap.put("finalType",finalType);
             dataMap.put("keyType",keyType);
             dataMap.put("LongType",LongType);
             template.process(dataMap, out);
-            System.out.println("StreamAggregate"+operatorId+".java 文件创建成功 !");
+            System.out.println("StreamAggregate"+ id +".java 文件创建成功 !");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

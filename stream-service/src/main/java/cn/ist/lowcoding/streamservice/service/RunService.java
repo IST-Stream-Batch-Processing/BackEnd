@@ -102,18 +102,27 @@ public class RunService {
             else if(name.equals("StreamAggregate")){
                 Aggregate aggregate = (Aggregate) operator;
                 FMAggregate fmAggregate = new FMAggregate();
-                BeanUtils.copyProperties(fmAggregate,aggregate);
+                BeanUtils.copyProperties(aggregate, fmAggregate);
+                String originalType = fmAggregate.getOriginalType();
+                String[] list = originalType.split(",");
+                originalType = list[0];
+                fmAggregate.setOriginalType(originalType);
                 fmAggregate.generate();
             }
             else if(name.equals("StreamProcessListState")){
                 ProcessListState processListState = (ProcessListState) operator;
                 FMProcessListState fmProcessListState = new FMProcessListState();
-                BeanUtils.copyProperties(fmProcessListState,processListState);
+                BeanUtils.copyProperties(processListState, fmProcessListState);
+                String originalType = fmProcessListState.getOriginalType();
+                String[] list = originalType.split(",");
+                originalType = list[0];
+                fmProcessListState.setOriginalType(originalType);
                 fmProcessListState.generate();
             }
 
         }
         FMCombination fmCombination = new FMCombination();
+        fmCombination.setId(combinationId);
         fmCombination.setStreamList(operators);
         fmCombination.generate();
     }
@@ -156,7 +165,7 @@ public class RunService {
             }
         }
         codeGenerate.javac("StreamCombination"+combinationId+".java");
-        Class<?> clazz = codeGenerate.java("StreamCombination");
+        Class<?> clazz = codeGenerate.java("StreamCombination"+combinationId);
         Object object = clazz.newInstance();
         Method method = clazz.getMethod("run");
         method.invoke(object,method);

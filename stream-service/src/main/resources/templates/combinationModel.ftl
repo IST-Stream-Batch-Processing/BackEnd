@@ -6,6 +6,8 @@ import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 
+import java.net.URL;
+
 public class StreamCombination${combinationId} {
     public static void run() throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -13,7 +15,7 @@ public class StreamCombination${combinationId} {
 
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
-        URL resource = StreamCombination.class.getResource("/UserBehavior.csv");
+        URL resource = StreamCombination${combinationId}.class.getResource("/UserBehavior.csv");
         DataStream<${String}> dataStream0 = env.readTextFile(resource.getPath());
         <#list streamList as stream>
         ${stream.output} dataStream${stream_index+1} = ${stream.name}${stream.id}.process(dataStream${stream_index});
@@ -23,3 +25,6 @@ public class StreamCombination${combinationId} {
         </#if>
         </#list>
         env.execute();
+
+    }
+}

@@ -13,7 +13,7 @@ import java.util.Comparator;
 
 
 public class StreamProcessListState${operatorId} {
-    public static DataStream<${finalType?cap_first}> process(KeyedStream<${originalType?cap_first}, ${keyType?cap_first}> inputsteam) {
+    public static DataStream<${finalType?cap_first}> process(KeyedStream<${originalType?cap_first},${keyType?cap_first}> inputsteam) {
         DataStream<${finalType?cap_first}> dataStream = inputsteam
             .process(new FinalResult(<#if isTop>${topSize}</#if>));
         return dataStream;
@@ -45,7 +45,7 @@ public class StreamProcessListState${operatorId} {
             itemViewCounts.sort(new Comparator<${originalType?cap_first}>() {
                 @Override
                 public int compare(${originalType?cap_first} o1, ${originalType?cap_first} o2) {
-                    <#if isSmaller>
+                    <#if isDescending>
                     return o2.getCount().intValue() - o1.getCount().intValue();
                     <#else>
                     return o1.getCount().intValue() - o2.getCount().intValue();
