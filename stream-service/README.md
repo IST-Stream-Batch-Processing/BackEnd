@@ -53,3 +53,210 @@ timeWindow算子finalType可传空
 ![img.png](doc-images/img-timeWindow.png)
 ![img.png](doc-images/img-windowViewCount.png)
 ![img.png](doc-images/img-processListState.png)
+
+#### 操作顺序说明
+
+1. 注册数据源
+
+   ```
+   {
+       "filePath":"Userbehavior",
+       "userId": "638fe162a355ca0449afc0e5",
+       "combinationIds":[],
+       "className":"UserBehavior",
+       "attributeList":[
+           {
+               "type":"Long",
+               "name":"itemId"
+           },
+           {
+               "type":"Long",
+               "name":"userId"
+           },
+           {
+               "type":"Integer",
+               "name":"categoryId"
+           },
+           {
+               "type":"String",
+               "name":"behavior"
+           },
+           {
+               "type":"Long",
+               "name":"timeStamp"
+           }
+       ],
+       "isTimeStamp":true,
+       "timeStampName":"timeStamp"
+   }
+   ```
+
+   2.注册编排
+
+   ```
+   {
+       "name":"firstCombination",
+       "dataId": "6390407736e4e2450773b8cd",
+       "operatorIds":[],
+       "finalTypes":[] 
+   }
+   ```
+
+   3.mapConstruct
+
+   ```
+   {
+       "combinationId":"6390417536e4e2450773b8ce",
+       "originalType":"String",
+       "finalType":"UserBehavior",
+       "isSplit":true,
+       "delimiter":",",
+       "timeStampType":"Long",
+       "regexFormat":true,
+       "timeStampIndex":0,
+       "dataList":[
+           {
+               "type":"Long",
+               "index":0
+           },
+           {
+               "type":"Long",
+               "index":1
+           },
+           {
+               "type":"Integer",
+               "index":2
+           },
+           {
+               "type":"String",
+               "index":3
+           },
+           {
+               "type":"Long",
+               "index":4
+           }
+       ]
+   }
+   ```
+
+   4.ascendingTimeStamp
+
+   ```
+   {
+       "combinationId":"6390417536e4e2450773b8ce",
+       "originalType":"UserBehavior",
+       "finalType":"UserBehavior",
+       "timeStampName":"timeStamp",
+       "unit":"s"
+        
+   }
+   ```
+
+   5.filterDataClassOne
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "filterName":"behavior",
+    "value":"pv",
+    "isRegex":false,
+    "regex":""
+}
+```
+
+6.keyByDataClass
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "keyType":"Long",
+    "keyName":"itemId"
+}
+```
+
+7.timeWindow
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "isSlide":true,
+    "lengthUnit":"hour",
+    "length":"1",
+    "intervalUnit":"minute",
+    "interval":"5",
+    "keyType":"Long",
+    "keyName":"itemId" 
+}
+```
+
+8.windowViewCount
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"",
+    "finalType":"UserBehavior,Long,TimeWindow",
+    "keyType":"Long",
+    "keyName":"itemId",
+    "attributeList":[
+        {
+            "type":"Long",
+            "name":"itemId"
+        },
+        {
+            "type":"Long",
+            "name":"windowEnd"
+        },
+        {
+            "type":"Long",
+            "name":"count"
+        }
+
+    ]
+}
+```
+
+9.Aggregate
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"UserBehavior,Long,TimeWindow",
+    "finalType":"WindowViewCount",
+    "keyType":"Long"
+}
+```
+
+10.keyByDataClass
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"WindowViewCount",
+    "finalType":"WindowViewCount",
+    "keyType":"Long",
+    "keyName":"windowEnd"
+}
+```
+
+11.processListState
+
+```
+{
+    "combinationId":"6390417536e4e2450773b8ce",
+    "originalType":"WindowViewCount",
+    "finalType":"String",
+    "keyType":"Long",
+    "isTop":true,
+    "topSize":5,
+    "isSort":true,
+    "isDescending":true
+}
+```
+

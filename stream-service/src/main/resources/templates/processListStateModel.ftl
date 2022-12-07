@@ -55,7 +55,6 @@ public class StreamProcessListState${operatorId} {
             </#if>
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("===============================");
             resultBuilder.append("windowEnd：").append(new Timestamp(timestamp - 1)).append("\n");
 
             //遍历列表，取Top n输出

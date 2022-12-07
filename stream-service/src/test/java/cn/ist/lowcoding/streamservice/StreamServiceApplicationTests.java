@@ -1,22 +1,18 @@
 package cn.ist.lowcoding.streamservice;
 
 import cn.ist.lowcoding.streamservice.freemaker.*;
-import cn.ist.lowcoding.streamservice.generateClass.StreamCombination638da9ebfece611588ed4e4d;
 
-import cn.ist.lowcoding.streamservice.model.data.Data;
+import cn.ist.lowcoding.streamservice.generateClass.StreamCombination6390417536e4e2450773b8ce;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
-import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import cn.ist.lowcoding.streamservice.util.CodeGenerate;
+import org.bson.types.Code;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +24,12 @@ class StreamServiceApplicationTests {
 
     @Test
     public void test() throws Exception {
-        StreamCombination638da9ebfece611588ed4e4d.run();
+//        StreamCombination6390417536e4e2450773b8ce.run();
+        CodeGenerate codeGenerate = new CodeGenerate();
+        Class<?> clazz = codeGenerate.java("StreamCombination6390417536e4e2450773b8ce");
+        Object object = clazz.newInstance();
+        Method method = clazz.getMethod("run");
+        method.invoke(object);
     }
 
     @Test
