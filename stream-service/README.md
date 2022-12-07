@@ -51,3 +51,5 @@ timeWindow算子keyBYDataClass可传空
 ![img.png](doc-images/img-keyByDataClass.png)
 timeWindow算子finalType可传空
 ![img.png](doc-images/img-timeWindow.png)
+![img.png](doc-images/img-windowViewCount.png)
+![img.png](doc-images/img-processListState.png)
