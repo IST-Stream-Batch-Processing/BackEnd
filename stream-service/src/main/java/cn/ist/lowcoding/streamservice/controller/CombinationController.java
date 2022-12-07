@@ -19,7 +19,6 @@ public class CombinationController {
     @PostMapping("/combination/{dataId}")
     public Result<String> registerCombination(@PathVariable("dataId") String dataId) {
         String combinationId = combinationService.registerCombination(dataId);
-
         return ResultUtil.success(combinationId);
     }
 

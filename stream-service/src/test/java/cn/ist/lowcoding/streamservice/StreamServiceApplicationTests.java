@@ -1,7 +1,8 @@
 package cn.ist.lowcoding.streamservice;
 
 import cn.ist.lowcoding.streamservice.freemaker.*;
-//import cn.ist.lowcoding.streamservice.generateClass.StreamCombination638da9ebfece611588ed4e4d;
+import cn.ist.lowcoding.streamservice.generateClass.StreamCombination638da9ebfece611588ed4e4d;
+
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
@@ -27,7 +28,7 @@ class StreamServiceApplicationTests {
 
     @Test
     public void test() throws Exception {
-//        StreamCombination638da9ebfece611588ed4e4d.run();
+        StreamCombination638da9ebfece611588ed4e4d.run();
     }
 
     @Test
