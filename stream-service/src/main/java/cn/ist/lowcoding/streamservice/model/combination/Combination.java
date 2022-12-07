@@ -15,6 +15,8 @@ import java.util.List;
 public class Combination {
     private String id; // 编排 ID
 
+    private String name; // 编排的名称
+
     private String dataId; // 一个编排所对应的数据源输入
 
     private List<String> operatorIds = new ArrayList<>(); // 一个编排下所包含的 operator id
