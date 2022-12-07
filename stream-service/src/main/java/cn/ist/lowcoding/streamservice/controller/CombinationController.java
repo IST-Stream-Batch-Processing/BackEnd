@@ -3,6 +3,7 @@ package cn.ist.lowcoding.streamservice.controller;
 import cn.ist.lowcoding.common.response.Result;
 import cn.ist.lowcoding.common.util.ResultUtil;
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
+import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateCombinationRequest;
 import cn.ist.lowcoding.streamservice.service.CombinationService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,11 @@ public class CombinationController {
     @Autowired
     CombinationService combinationService;
 
-    @ApiOperation(value = "向指定的数据源注册编排")
-    @PostMapping("/combination/{dataId}")
-    public Result<String> registerCombination(@PathVariable("dataId") String dataId) {
-        String combinationId = combinationService.registerCombination(dataId);
+    @ApiOperation(value = "注册编排")
+    @PostMapping("/combination")
+    public Result<String> registerCombination(@RequestBody CreateCombinationRequest request) {
+        String combinationId = combinationService.registerCombination(request);
+
         return ResultUtil.success(combinationId);
     }
 

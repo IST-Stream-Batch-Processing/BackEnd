@@ -2,9 +2,11 @@ package cn.ist.lowcoding.streamservice.service;
 
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
 import cn.ist.lowcoding.streamservice.model.data.Data;
+import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateCombinationRequest;
 import cn.ist.lowcoding.streamservice.repository.CombinationRepo;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
 import cn.ist.lowcoding.streamservice.repository.OperatorRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +23,16 @@ public class CombinationService {
     @Autowired
     OperatorRepo operatorRepo;
 
-    public String registerCombination(String dataId) {
+    public String registerCombination(CreateCombinationRequest request) {
         Combination combination = new Combination();
-        combination.setDataId(dataId);
+        BeanUtils.copyProperties(request, combination);
         combinationRepo.save(combination);
 
-        String combinationId = combination.getId();
+        // 更新编排对应的数据源
+        String dataId = request.getDataId();
         Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
-
         List<String> combinationIds = data.getCombinationIds();
+        String combinationId = combination.getId();
         combinationIds.add(combinationId);
         dataRepo.save(data);
 
