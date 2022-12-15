@@ -1,6 +1,8 @@
 package cn.ist.lowcoding.streamservice.model.data;
 
 
+import cn.ist.lowcoding.streamservice.model.combination.Combination;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +19,9 @@ public class Data {
 
     private String userId; // 数据源 所对应的用户 ID
 
-    private List<String> combinationIds = new ArrayList<>(); // 数据源 所对应的流程编排 ID 列表（详见 combinationDO）
+    private List<String> combinationIds = new ArrayList<>(); // 数据源 所对应的流程编排 ID 列表（详见 combinationDO） TODO: 未来重构可以考虑删除该属性
 
-    // TODO: Application needs update
-
+    private List<Combination> combinations = new ArrayList<>();
 
     // 数据源对应的数据
     private String className; // 设置的数据名称

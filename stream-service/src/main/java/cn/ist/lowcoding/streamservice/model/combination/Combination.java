@@ -1,6 +1,7 @@
 package cn.ist.lowcoding.streamservice.model.combination;
 
 
+import cn.ist.lowcoding.streamservice.model.stream.Operator;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -19,7 +20,9 @@ public class Combination {
 
     private String dataId; // 一个编排所对应的数据源输入
 
-    private List<String> operatorIds = new ArrayList<>(); // 一个编排下所包含的 operator id
+    private List<String> operatorIds = new ArrayList<>(); // 一个编排下所包含的 operator id  TODO: 未来重构可以考虑删除该属性
+
+    private List<Operator> operators = new ArrayList<>(); // 一个编排下所包含的operator
 
     private List<String> finalTypes = new ArrayList<>(); // 记录每一个算子的用户输出类型
 }

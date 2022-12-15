@@ -34,6 +34,8 @@ public class CombinationService {
         List<String> combinationIds = data.getCombinationIds();
         String combinationId = combination.getId();
         combinationIds.add(combinationId);
+        List<Combination> combinations = data.getCombinations();
+        combinations.add(combination);
         dataRepo.save(data);
 
         return combinationId;
@@ -60,6 +62,8 @@ public class CombinationService {
         Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
         List<String> combinationIds = data.getCombinationIds();
         combinationIds.remove(combinationId);
+        List<Combination> combinations = data.getCombinations();
+        combinations.remove(combination);
         dataRepo.save(data);
 
         combinationRepo.deleteById(combinationId);
