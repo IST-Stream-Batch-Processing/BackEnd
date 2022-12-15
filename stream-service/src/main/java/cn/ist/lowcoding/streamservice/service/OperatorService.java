@@ -32,11 +32,9 @@ public class OperatorService {
         String combinationId = operator.getCombinationId();
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
-        List<Operator> operators = combination.getOperators();
         List<String> operatorFinalTypes = combination.getFinalTypes();
         int operatorIndex = operatorIds.indexOf(operatorId);
         operatorIds.remove(operatorIndex);
-        operators.remove(operatorIndex);
         operatorFinalTypes.remove(operatorIndex);
         combinationRepo.save(combination);
 

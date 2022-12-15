@@ -20,7 +20,6 @@ public class CombinationController {
     @PostMapping("/combination")
     public Result<String> registerCombination(@RequestBody CreateCombinationRequest request) {
         String combinationId = combinationService.registerCombination(request);
-
         return ResultUtil.success(combinationId);
     }
 
@@ -34,23 +33,14 @@ public class CombinationController {
     @ApiOperation(value = "获取指定的编排")
     @GetMapping("/combination/{id}")
     public Result<Combination> getCombinationById(@PathVariable("id") String combinationId) {
-        //未测试
         Combination res = combinationService.getCombinationById(combinationId);
         return ResultUtil.success(res);
     }
 
-
-    //TODO: 更新方法待定
-
+    @ApiOperation(value = "删除指定的编排")
     @DeleteMapping("/combination/{id}")
     public Result<String> deleteCombinationById(@PathVariable("id") String combinationId) {
         combinationService.deleteCombinationById(combinationId);
         return ResultUtil.success();
-    }
-
-    @GetMapping("/combination/data/{dataId}")
-    public Result<List<Combination>> getAllCombinationsByDataId(@PathVariable String dataId) {
-        //未实现
-        return null;
     }
 }

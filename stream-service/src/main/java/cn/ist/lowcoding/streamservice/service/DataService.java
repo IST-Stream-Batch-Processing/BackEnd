@@ -1,5 +1,6 @@
 package cn.ist.lowcoding.streamservice.service;
 
+import cn.ist.lowcoding.streamservice.model.combination.Combination;
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateDataRequest;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
@@ -14,6 +15,9 @@ public class DataService {
     @Autowired
     DataRepo dataRepo;
 
+    @Autowired
+    CombinationService combinationService;
+
     public String registerData(CreateDataRequest request) {
         //得到DataDO
         Data data = new Data();
@@ -24,26 +28,36 @@ public class DataService {
         return data.getId();
     }
 
+    private void fillCombinationsInData(Data data) {
+        List<Combination> combinations = data.getCombinations();
+        List<String> combinationIds = data.getCombinationIds();
+        for (String combinationId : combinationIds) {
+            Combination combination = combinationService.getCombinationById(combinationId);
+            combinations.add(combination);
+        }
+    }
+
     public List<Data> getAllData() {
-        return dataRepo.findAll();
+        List<Data> allData = dataRepo.findAll();
+        for (Data data : allData) {
+            fillCombinationsInData(data);
+        }
+        return allData;
     }
 
-    public Data getDataById(String userId, String dataId) {
-        return dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+    public Data getDataById(String dataId) {
+        Data data = dataRepo.findById(dataId).orElseThrow(() -> new RuntimeException("找不到对应的数据源"));
+        fillCombinationsInData(data);
+        return data;
     }
 
-    public void deleteData(String userId, String dataId) {
-        // TODO: 如何验证用户类型是否可以删除dataDO
+    public void deleteData(String dataId) {
+        Data data = getDataById(dataId);
+        List<String> combinationIds = data.getCombinationIds();
+        for (String combinationId : combinationIds) {
+            combinationService.deleteCombinationById(combinationId);
+        }
 
-        //删除所有与data相关的combination、operator
         dataRepo.deleteById(dataId);
-    }
-
-    public void updateData(CreateDataRequest request) {
-    }
-
-    public List<Data> getAllDataByUserId(String userId) {
-        //从getAllData()获取所有Data，再遍历寻找相同的userId
-        return null;
     }
 }

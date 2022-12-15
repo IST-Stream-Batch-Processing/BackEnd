@@ -1,7 +1,6 @@
 package cn.ist.lowcoding.streamservice.controller;
 
 import cn.ist.lowcoding.common.response.Result;
-import cn.ist.lowcoding.common.util.RequestUtil;
 import cn.ist.lowcoding.common.util.ResultUtil;
 import cn.ist.lowcoding.streamservice.model.data.Data;
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateDataRequest;
@@ -34,28 +33,14 @@ public class DataController {
     @ApiOperation(value = "获取指定的数据源")
     @GetMapping("/data/{id}")
     public Result<Data> getDataById(@PathVariable("id") String dataId){
-        Data res = dataService.getDataById(RequestUtil.getUserId(), dataId);
+        Data res = dataService.getDataById(dataId);
         return ResultUtil.success(res);
     }
 
-    @PutMapping("/data")
-    public Result<String> updateData(@RequestBody CreateDataRequest request){
-        //未实现
-        dataService.updateData(request);
-        return ResultUtil.success();
-    }
-
+    @ApiOperation(value = "删除指定的数据源")
     @DeleteMapping("/data/{id}")
     public Result<String> deleteData(@PathVariable("id") String dataId){
-        // 未实现
-        dataService.deleteData(RequestUtil.getUserId(), dataId);
+        dataService.deleteData(dataId);
         return ResultUtil.success();
-    }
-
-    @GetMapping("/data/user/{userId}")
-    public Result<List<Data>> getAllDataByUserId(@PathVariable String userId) {
-        // 未实现
-        List<Data> res = dataService.getAllDataByUserId(userId);
-        return ResultUtil.success(res);
     }
 }
