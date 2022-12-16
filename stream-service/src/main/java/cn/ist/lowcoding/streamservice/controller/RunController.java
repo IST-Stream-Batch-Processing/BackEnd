@@ -13,19 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 
+/**
+ * RunController现已整合至CombinationController中，将在未来版本中删除。
+ */
+@Deprecated
 @RestController
 public class RunController {
     @Autowired
     RunService runService;
 
-    @ApiOperation(value = "根据模板生成.java文件")
+    @Deprecated
+    @ApiOperation(value = "根据模板生成.java文件", notes = "建议改为调用CombinationController中的generateCombinationById方法")
     @GetMapping("/run/generate/{combinationId}")
     public Result<String> generate(@PathVariable("combinationId") String combinationId){
         runService.generate(combinationId);
         return ResultUtil.success();
     }
 
-    @ApiOperation(value = "将.java文件编译成.class文件并运行")
+    @Deprecated
+    @ApiOperation(value = "将.java文件编译成.class文件并运行", notes = "建议改为调用CombinationController中的runCombinationById方法")
     @GetMapping("/run/{combinationId}")
     public Result<String> run(@PathVariable("combinationId") String combinationId) throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         runService.compile(combinationId);

@@ -43,4 +43,18 @@ public class CombinationController {
         combinationService.deleteCombinationById(combinationId);
         return ResultUtil.success();
     }
+
+    @ApiOperation(value = "生成指定的编排")
+    @GetMapping("/combination/generate/{id}")
+    public Result<String> generateCombinationById(@PathVariable("id") String combinationId) {
+        combinationService.generateCombinationById(combinationId);
+        return ResultUtil.success();
+    }
+
+    @ApiOperation(value = "运行指定的编排")
+    @GetMapping("/combination/run/{id}")
+    public Result<String> runCombinationById(@PathVariable("id") String combinationId) {
+        combinationService.runCombinationById(combinationId);
+        return ResultUtil.success();
+    }
 }
