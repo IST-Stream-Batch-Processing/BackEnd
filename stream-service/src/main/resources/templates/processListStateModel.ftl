@@ -30,7 +30,8 @@ public class StreamProcessListState${operatorId} {
 
         private Integer topSize;
         private String sessionId;
-        public FinalResult(){}
+        public FinalResult(String sessionId){ this.sessionId = sessionId;}
+
         public FinalResult(Integer topSize,String sessionId) {
             this.topSize = topSize;
             this.sessionId = sessionId;
@@ -77,8 +78,8 @@ public class StreamProcessListState${operatorId} {
            </#if>
                 ${originalType?cap_first} currentItemViewCount = itemViewCounts.get(i);
                 resultBuilder.append("No ").append(i+1).append(":")
-                .append(" 商品id = ").append(currentItemViewCount.getItemId())
-                .append(" 热门度 = ").append(currentItemViewCount.getCount())
+                .append("itemId: ").append(currentItemViewCount.getItemId())
+                .append("count: ").append(currentItemViewCount.getCount())
                 .append("\n");
             }
             resultBuilder.append("=============================================\n\n");

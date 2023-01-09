@@ -3,6 +3,7 @@ package cn.ist.lowcoding.streamservice.service;
 import cn.ist.lowcoding.streamservice.freemaker.*;
 import cn.ist.lowcoding.streamservice.model.combination.Combination;
 import cn.ist.lowcoding.streamservice.model.data.Data;
+import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import cn.ist.lowcoding.streamservice.model.stream.*;
 import cn.ist.lowcoding.streamservice.repository.CombinationRepo;
 import cn.ist.lowcoding.streamservice.repository.DataRepo;
@@ -95,6 +96,8 @@ public class RunService {
                 WindowViewCount windowViewCount = (WindowViewCount) operator;
                 FMWindowViewCount fmWindowViewCount = new FMWindowViewCount();
                 BeanUtils.copyProperties(windowViewCount, fmWindowViewCount);
+                List<TypeAndName> attributeList = fmWindowViewCount.getAttributeList();
+                attributeList.get(0).setName("itemId");
                 fmWindowViewCount.setDataId("");
                 fmWindowViewCount.generate();
                 operators.remove(i);

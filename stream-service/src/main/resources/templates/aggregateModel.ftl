@@ -35,7 +35,7 @@ public class StreamAggregate${operatorId}   {
             return a + b;
         }
     }
-    public static class CountResult implements WindowFunction<${keyType?cap_first}, ${finalType?cap_first}, Long, TimeWindow> {
+    public static class CountResult implements WindowFunction<${LongType}, ${finalType?cap_first}, ${keyType?cap_first}, TimeWindow> {
         @Override
         public void apply(${keyType?cap_first} key, TimeWindow timeWindow, Iterable<${LongType}> iterable, Collector<${finalType?cap_first}> collector) throws Exception {
                 ${keyType?cap_first} keyContent = key;
