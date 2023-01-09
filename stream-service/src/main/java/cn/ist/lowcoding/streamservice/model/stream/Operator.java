@@ -65,6 +65,14 @@ public class Operator {
             this.inputType="KeyedStream";
             this.outputType="DataStream";
         }
+        else if(this.name.equals("StreamMapAndKeyByRandom")){
+            this.inputType="DataStream";
+            this.outputType="KeyedStream";
+        }
+        else if(this.name.equals("StreamProcessValueState")){
+            this.inputType="KeyedStream";
+            this.outputType="DataStream";
+        }
     }
 
     public void generateInput() {

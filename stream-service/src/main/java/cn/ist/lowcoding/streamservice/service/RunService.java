@@ -108,7 +108,12 @@ public class RunService {
                 BeanUtils.copyProperties(aggregate, fmAggregate);
                 String originalType = fmAggregate.getOriginalType();
                 String[] list = originalType.split(",");
-                originalType = list[0];
+                if(list.length>3){
+                    originalType = "Tuple2<Integer,Long>";
+                }
+                else{
+                    originalType = list[0];
+                }
                 fmAggregate.setOriginalType(originalType);
                 fmAggregate.generate();
             }
@@ -121,6 +126,13 @@ public class RunService {
                 originalType = list[0];
                 fmProcessListState.setOriginalType(originalType);
                 fmProcessListState.generate();
+            }
+            else if(name.equals("StreamMapAndKeyByRandom")){
+                MapAndKeyByRandom mapAndKeyByRandom = (MapAndKeyByRandom) operator;
+                FMMapAndKeyByRandom fmMapAndKeyByRandom = new FMMapAndKeyByRandom();
+                BeanUtils.copyProperties(mapAndKeyByRandom,fmMapAndKeyByRandom);
+                fmMapAndKeyByRandom.generate();
+
             }
 
         }
