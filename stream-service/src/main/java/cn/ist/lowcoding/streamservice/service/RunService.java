@@ -168,7 +168,10 @@ public class RunService {
         codeGenerate.javac("StreamCombination"+combinationId+".java");
         Class<?> clazz = codeGenerate.java("StreamCombination"+combinationId);
         Object object = clazz.newInstance();
-        Method method = clazz.getMethod("run");
-        method.invoke(object);
+        Method method = clazz.getMethod("run",String.class);
+//        //得到sessionId
+        Object[] sessionId = {"0"};
+        method.invoke(object,sessionId);
+
     }
 }

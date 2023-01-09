@@ -30,4 +30,5 @@ public class AggregateController {
         AggregateVO res = aggregateService.getAggregateDisplayByCombinationId(combinationId);
         return ResultUtil.success(res);
     }
+
 }

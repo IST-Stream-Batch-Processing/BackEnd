@@ -6,23 +6,34 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
 import org.apache.flink.util.Collector;
-
+import org.springframework.stereotype.Component;
+import java.util.concurrent.ConcurrentHashMap;
+import cn.ist.lowcoding.streamservice.util.WebSocketServer;
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Map;
 
 
 public class StreamProcessListState${operatorId} {
-    public static DataStream<${finalType?cap_first}> process(KeyedStream<${originalType?cap_first},${keyType?cap_first}> inputsteam) {
+
+    public static DataStream<${finalType?cap_first}> process(KeyedStream<${originalType?cap_first},${keyType?cap_first}> inputsteam,String sessionId) {
         DataStream<${finalType?cap_first}> dataStream = inputsteam
-            .process(new FinalResult(<#if isTop>${topSize}</#if>));
+            .process(new FinalResult(<#if isTop>${topSize},</#if>sessionId));
         return dataStream;
     }
+
     public static class FinalResult extends KeyedProcessFunction<${keyType?cap_first},${originalType?cap_first},${finalType?cap_first}> {
+
         private Integer topSize;
+        private String sessionId;
         public FinalResult(){}
-        public FinalResult(Integer topSize) {
+        public FinalResult(Integer topSize,String sessionId) {
             this.topSize = topSize;
+            this.sessionId = sessionId;
         }
 
         ListState<${originalType?cap_first}> itemViewCountListState;
@@ -55,7 +66,8 @@ public class StreamProcessListState${operatorId} {
             </#if>
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("windowEnd：").append(new Timestamp(timestamp - 1)).append("\n");
+            resultBuilder.append("===============================");
+            resultBuilder.append("窗口结束时间：").append(new Timestamp(timestamp - 1)).append("\n");
 
             //遍历列表，取Top n输出
            <#if isTop>
@@ -65,12 +77,15 @@ public class StreamProcessListState${operatorId} {
            </#if>
                 ${originalType?cap_first} currentItemViewCount = itemViewCounts.get(i);
                 resultBuilder.append("No ").append(i+1).append(":")
-                .append(" itemId = ").append(currentItemViewCount.getItemId())
-                .append(" count = ").append(currentItemViewCount.getCount())
+                .append(" 商品id = ").append(currentItemViewCount.getItemId())
+                .append(" 热门度 = ").append(currentItemViewCount.getCount())
                 .append("\n");
             }
             resultBuilder.append("=============================================\n\n");
             out.collect(resultBuilder.toString());
+            WebSocketServer websocketServer = WebSocketServer.getWebSocketServerBySessionId(sessionId);
+            websocketServer.sendMessage(resultBuilder.toString());
+
         }
     }
 }

@@ -25,6 +25,7 @@ public class FMProcessListState {
     private int topSize;
     private Boolean isSort;//是否排序
     private Boolean isDescending;//是否从大到小排
+    private String string = "String";
 
     public void generate() {
 
@@ -47,6 +48,7 @@ public class FMProcessListState {
             dataMap.put("keyType",keyType);
             dataMap.put("itemViewCounts",itemViewCounts);
             dataMap.put("isTop",isTop);
+            dataMap.put("String",string);
             if(isTop){
                 dataMap.put("topSize",topSize);
             }
