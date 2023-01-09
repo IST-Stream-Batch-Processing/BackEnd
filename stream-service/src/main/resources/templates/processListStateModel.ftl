@@ -55,8 +55,7 @@ public class StreamProcessListState${operatorId} {
             </#if>
 
             StringBuilder resultBuilder = new StringBuilder();
-            resultBuilder.append("===============================");
-            resultBuilder.append("窗口结束时间：").append(new Timestamp(timestamp - 1)).append("\n");
+            resultBuilder.append("windowEnd：").append(new Timestamp(timestamp - 1)).append("\n");
 
             //遍历列表，取Top n输出
            <#if isTop>
@@ -66,8 +65,8 @@ public class StreamProcessListState${operatorId} {
            </#if>
                 ${originalType?cap_first} currentItemViewCount = itemViewCounts.get(i);
                 resultBuilder.append("No ").append(i+1).append(":")
-                .append(" 商品id = ").append(currentItemViewCount.getItemId())
-                .append(" 热门度 = ").append(currentItemViewCount.getCount())
+                .append(" itemId = ").append(currentItemViewCount.getItemId())
+                .append(" count = ").append(currentItemViewCount.getCount())
                 .append("\n");
             }
             resultBuilder.append("=============================================\n\n");

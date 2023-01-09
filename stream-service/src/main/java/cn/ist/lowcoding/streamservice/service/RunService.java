@@ -156,7 +156,7 @@ public class RunService {
                 codeGenerate.javac("StreamTimeWindow"+operatorId + ".java");
             }
             else if(name.equals("WindowViewCount")){
-                codeGenerate.javac("WindowViewCount" + ".java");
+                codeGenerate.javac("WindowViewCount"+ ".java");
             }
             else if(name.equals("StreamAggregate")){
                 codeGenerate.javac("StreamAggregate"+operatorId+".java");
@@ -169,6 +169,6 @@ public class RunService {
         Class<?> clazz = codeGenerate.java("StreamCombination"+combinationId);
         Object object = clazz.newInstance();
         Method method = clazz.getMethod("run");
-        method.invoke(object,method);
+        method.invoke(object);
     }
 }

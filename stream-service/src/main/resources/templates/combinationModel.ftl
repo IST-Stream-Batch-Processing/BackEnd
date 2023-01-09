@@ -9,14 +9,13 @@ import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import java.net.URL;
 
 public class StreamCombination${combinationId} {
-    public static void run() throws Exception {
+    public void run() throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
-        URL resource = StreamCombination${combinationId}.class.getResource("/UserBehavior.csv");
-        DataStream<${String}> dataStream0 = env.readTextFile(resource.getPath());
+        DataStream<${String}> dataStream0 = env.readTextFile("D:\\BackEnd\\stream-service\\src\\main\\resources\\file\\UserBehavior.csv");
         <#list streamList as stream>
         ${stream.output} dataStream${stream_index+1} = ${stream.name}${stream.id}.process(dataStream${stream_index});
         <#if stream_has_next>

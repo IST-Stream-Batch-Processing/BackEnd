@@ -40,10 +40,8 @@ public class CodeGenerate {
 
         //1.创建一个File文件对象：路径是存放class文件目录：要保证class的包目录是完整的：可以是压缩包
         File file = new File(System.getProperty("user.dir")+"/src/main/java");
-        System.out.println(file);
         //2.获取URL对象
         URL url = file.toURI().toURL();
-        System.out.println(url);
         //3.创建URL类加载器
         URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{url});
 
