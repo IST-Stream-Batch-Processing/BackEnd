@@ -186,7 +186,7 @@ public class CombinationService {
         fmCombination.generate();
     }
 
-    public void runCombinationById(String combinationId) {
+    public void runCombinationById(String combinationId, String sessionId) {
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
         CodeGenerate codeGenerate = new CodeGenerate();
@@ -227,8 +227,8 @@ public class CombinationService {
         try {
             Class<?> clazz = codeGenerate.java("StreamCombination"+combinationId);
             Object object = clazz.newInstance();
-            Method method = clazz.getMethod("run");
-            method.invoke(object,method);
+            Method method = clazz.getMethod("run", String.class);
+            method.invoke(object, sessionId);
         } catch (Exception e) {
             throw new RuntimeException("运行编排时出错");
         }

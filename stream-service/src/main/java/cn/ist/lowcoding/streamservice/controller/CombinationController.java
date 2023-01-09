@@ -51,10 +51,10 @@ public class CombinationController {
         return ResultUtil.success();
     }
 
-    @ApiOperation(value = "运行指定的编排")
-    @GetMapping("/combination/run/{id}")
-    public Result<String> runCombinationById(@PathVariable("id") String combinationId) {
-        combinationService.runCombinationById(combinationId);
+    @ApiOperation(value = "运行指定的编排，并通过指定的WebSocket会话id传输消息")
+    @GetMapping("/combination/run/{id}/{sessionId}")
+    public Result<String> runCombinationById(@PathVariable("id") String combinationId, @PathVariable("sessionId") String sessionId) {
+        combinationService.runCombinationById(combinationId, sessionId);
         return ResultUtil.success();
     }
 }
