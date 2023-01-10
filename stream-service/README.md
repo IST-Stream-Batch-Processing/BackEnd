@@ -24,7 +24,7 @@ DataController : /register
 
 ### 算子
 
-#### MapConstruct
+MapConstruct
 
 功能：将数据流转换成对应注册数据
 
@@ -55,44 +55,153 @@ timeWindow算子finalType可传空
 ![img.png](doc-images/img-aggregate.png)
 ![img.png](doc-images/img-processListState.png)
 
-#### 操作顺序说明
+### 新增
 
-1. 注册数据源
+#### 新增算子界面
 
-   ```
-   {
-       "filePath":"Userbehavior",
-       "userId": "638fe162a355ca0449afc0e5",
-       "combinationIds":[],
-       "className":"UserBehavior",
-       "attributeList":[
-           {
-               "type":"Long",
-               "name":"itemId"
-           },
-           {
-               "type":"Long",
-               "name":"userId"
-           },
-           {
-               "type":"Integer",
-               "name":"categoryId"
-           },
-           {
-               "type":"String",
-               "name":"behavior"
-           },
-           {
-               "type":"Long",
-               "name":"timeStamp"
-           }
-       ],
-       "isTimeStamp":true,
-       "timeStampName":"timeStamp"
-   }
-   ```
+（1）mapAndKeyByRandom
 
-   2.注册编排
+```
+{
+    "originalType":"UserBehavior",
+    "finalType":"Tuple2<Integer, Long>",
+    "randomSize":10
+}
+```
+
+（2）processValueState
+
+```
+{
+    "originalType":"WindowViewCount",
+    "finalType":"WindowViewCount",
+    "keyType":"Integer"
+}
+```
+
+#### 编排概览
+
+第一个编排（柱状图）：mapConstruct、assignTimeStamp、filter、keyByDataClass、timeWindow、WindowViewCount、aggregate、keyByDataClass、processListState
+
+第二个编排（折线图）：mapConstruct、assignTimeStamp、filter、**mapAndKeyByRandom**、timeWindow、WindowViewCount、aggregate、keyByDataClass、**processValueState**
+
+第三个编排（饼状图）：mapConstruct、assignTimeStamp、keyByDataClass、timeWindow、WindowViewCount、aggregate、keyByDataClass、processListState
+
+#### 编排结果说明
+
+##### 编排一
+
+一个windowEnd代表一个柱状图，itemId横坐标、count纵坐标
+
+```
+{
+windowEnd:2017-11-26 09:05:00.0,
+list:[
+{
+itemId:5051027,
+count:3
+},
+{
+itemId:3493253,
+count:3
+},
+{
+itemId:4261030,
+count:3
+},
+{
+itemId:4894670,
+count:2
+},
+{
+itemId:3781391,
+count:2
+}
+]
+}
+```
+
+##### 编排二
+
+一个图：折线图 横坐标：time 纵坐标：count
+
+```
+接收数据：{
+time:2017-11-26 18:00:00.0,
+totalCount:48292
+}
+```
+
+##### 编排三
+
+一个windowEnd代表一个饼状图，四项（pv、cart、fav、buy）
+
+```
+接收数据：{
+windowEnd:2017-11-26 18:00:00.0,
+list:[
+{
+itemId:pv,
+count:48292
+},
+{
+itemId:cart,
+count:2900
+},
+{
+itemId:fav,
+count:1543
+},
+{
+itemId:buy,
+count:1167
+}
+]
+}
+```
+
+
+
+### 操作顺序说明
+
+注册数据源（三个编排共用一个数据源）
+
+```
+{
+    "filePath":"Userbehavior",
+    "userId": "638fe162a355ca0449afc0e5",
+    "combinationIds":[],
+    "className":"UserBehavior",
+    "attributeList":[
+        {
+            "type":"Long",
+            "name":"itemId"
+        },
+        {
+            "type":"Long",
+            "name":"userId"
+        },
+        {
+            "type":"Integer",
+            "name":"categoryId"
+        },
+        {
+            "type":"String",
+            "name":"behavior"
+        },
+        {
+            "type":"Long",
+            "name":"timeStamp"
+        }
+    ],
+    "isTimeStamp":true,
+    "timeStampName":"timeStamp"
+}
+```
+
+#### 第一个编排
+
+1. 注册编排
 
    ```
    {
@@ -102,9 +211,9 @@ timeWindow算子finalType可传空
        "finalTypes":[] 
    }
    ```
-
-   3.mapConstruct
-
+   
+   2.mapConstruct
+   
    ```
    {
        "combinationId":"6390417536e4e2450773b8ce",
@@ -140,8 +249,8 @@ timeWindow算子finalType可传空
    }
    ```
 
-   4.ascendingTimeStamp
-
+   3.ascendingTimeStamp
+   
    ```
    {
        "combinationId":"6390417536e4e2450773b8ce",
@@ -152,8 +261,8 @@ timeWindow算子finalType可传空
         
    }
    ```
-
-   5.filterDataClassOne
+   
+   4.filterDataClassOne
 
 ```
 {
@@ -167,7 +276,7 @@ timeWindow算子finalType可传空
 }
 ```
 
-6.keyByDataClass
+5.keyByDataClass
 
 ```
 {
@@ -179,7 +288,7 @@ timeWindow算子finalType可传空
 }
 ```
 
-7.timeWindow
+6.timeWindow
 
 ```
 {
@@ -196,7 +305,7 @@ timeWindow算子finalType可传空
 }
 ```
 
-8.windowViewCount
+7.windowViewCount
 
 ```
 {
@@ -223,7 +332,7 @@ timeWindow算子finalType可传空
 }
 ```
 
-9.Aggregate
+8.Aggregate
 
 ```
 {
@@ -234,7 +343,7 @@ timeWindow算子finalType可传空
 }
 ```
 
-10.keyByDataClass
+9.keyByDataClass
 
 ```
 {
@@ -246,7 +355,7 @@ timeWindow算子finalType可传空
 }
 ```
 
-11.processListState
+10.processListState
 
 ```
 {
@@ -261,3 +370,324 @@ timeWindow算子finalType可传空
 }
 ```
 
+#### 第二个编排
+
+1.注册编排
+
+```
+{
+    "name":"secondCombination",
+    "dataId": "63bd448d4fc436231cff2882",
+    "operatorIds":[],
+    "finalTypes":[] 
+}
+```
+
+2.mapConstruct
+
+```
+{
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"String",
+    "finalType":"UserBehavior",
+    "isSplit":true,
+    "delimiter":",",
+    "timeStampType":"Long",
+    "regexFormat":true,
+    "timeStampIndex":0,
+    "dataList":[
+        {
+            "type":"Long",
+            "index":0
+        },
+        {
+            "type":"Long",
+            "index":1
+        },
+        {
+            "type":"Integer",
+            "index":2
+        },
+        {
+            "type":"String",
+            "index":3
+        },
+        {
+            "type":"Long",
+            "index":4
+        }
+    ]
+}
+```
+
+3.assignTimeStamp
+
+```
+{    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "timeStampName":"timeStamp",
+    "unit":"s"
+     
+}
+```
+
+4.filter
+
+```
+{
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "filterName":"behavior",
+    "value":"pv",
+    "isRegex":false,
+    "regex":""
+}
+```
+
+5.mapAndKeyByRandom
+
+```
+{
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"UserBehavior",
+    "finalType":"Tuple2<Integer, Long>",
+    "randomSize":10
+}
+```
+
+6.timeWindow
+
+```
+
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"Tuple2<Integer, Long>",
+    "finalType":"Tuple2<Integer, Long>",
+    "isSlide":false,
+    "lengthUnit":"hour",
+    "length":"1",
+    "intervalUnit":"minute",
+    "interval":"5",
+    "keyType":"Integer",
+    "keyName":"itemId" 
+}
+```
+
+7.WindowViewCount
+
+```
+
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"",
+    "finalType":"Tuple2<Integer, Long>,Integer,TimeWindow",
+    "keyType":"Integer",
+    "keyName":"pv",
+    "attributeList":[
+        {
+            "type":"Integer",
+            "name":"pv"
+        },
+        {
+            "type":"Long",
+            "name":"windowEnd"
+        },
+        {
+            "type":"Long",
+            "name":"count"
+        }
+
+    ]
+}
+```
+
+8.Aggregate
+
+```
+{
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"Tuple2<Integer,Long>, Integer, TimeWindow",
+    "finalType":"WindowViewCount",
+    "keyType":"Integer"
+}
+```
+
+9.keyByDataClass
+
+```
+{
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"WindowViewCount",
+    "finalType":"WindowViewCount",
+    "keyType":"Long",
+    "keyName":"windowEnd"
+}
+```
+
+10processValueState
+
+```
+{
+    "combinationId":"63bd47de3fa3e0749374f4dc",
+    "originalType":"WindowViewCount",
+    "finalType":"WindowViewCount",
+    "keyType":"Integer"
+}
+```
+
+#### 第三个编排
+
+1.注册编排
+
+```
+{
+    "name":"thirdCombination",
+    "dataId": "63bd448d4fc436231cff2882",
+    "operatorIds":[],
+    "finalTypes":[] 
+}
+```
+
+2.mapConstruct
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"String",
+    "finalType":"UserBehavior",
+    "isSplit":true,
+    "delimiter":",",
+    "timeStampType":"Long",
+    "regexFormat":true,
+    "timeStampIndex":0,
+    "dataList":[
+        {
+            "type":"Long",
+            "index":0
+        },
+        {
+            "type":"Long",
+            "index":1
+        },
+        {
+            "type":"Integer",
+            "index":2
+        },
+        {
+            "type":"String",
+            "index":3
+        },
+        {
+            "type":"Long",
+            "index":4
+        }
+    ]
+}
+```
+
+3.assignTimeStamp
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "timeStampName":"timeStamp",
+    "unit":"s"
+     
+}
+```
+
+4.keyByDataClass
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"WindowViewCount",
+    "finalType":"WindowViewCount",
+    "keyType":"Long",
+    "keyName":"windowEnd"
+}
+```
+
+5.timeWindow
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"UserBehavior",
+    "finalType":"UserBehavior",
+    "isSlide":false,
+    "lengthUnit":"hour",
+    "length":"1",
+    "intervalUnit":"",
+    "interval":"",
+    "keyType":"String",
+    "keyName":"behavior" 
+}
+```
+
+6.WindowViewCount
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"",
+    "finalType":"UserBehavior,String,TimeWindow",
+    "keyType":"String",
+    "keyName":"behavior",
+    "attributeList":[
+        {
+            "type":"String",
+            "name":"behavior"
+        },
+        {
+            "type":"Long",
+            "name":"windowEnd"
+        },
+        {
+            "type":"Long",
+            "name":"count"
+        }
+
+    ]
+}
+```
+
+7.aggregate
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"UserBehavior,String,TimeWindow",
+    "finalType":"WindowViewCount",
+    "keyType":"String"
+}
+```
+
+8.keyByDataClass
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"WindowViewCount",
+    "finalType":"WindowViewCount",
+    "keyType":"Long",
+    "keyName":"windowEnd"
+}
+```
+
+9.processListState
+
+```
+{
+    "combinationId":"63bd4e441f352a5873918073",
+    "originalType":"WindowViewCount",
+    "finalType":"String",
+    "keyType":"Long",
+    "isTop":false,
+    "topSize":5,
+    "isSort":true,
+    "isDescending":true
+}
+```
