@@ -78,6 +78,9 @@ timeWindow算子finalType可传空
     "keyType":"Integer"
 }
 ```
+#### 编排主义
+（1）run一个编排时，记得把combinationModel.ftl中的文件路径改成你的本地路径
+（2）run完一个编排出结果后要把generateClass中的东西删去，否则第二个编排run的时候会报错
 
 #### 编排概览
 
