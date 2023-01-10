@@ -153,7 +153,7 @@ public class RunService {
         fmCombination.generate();
     }
 
-    public void compile(String combinationId) throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+    public void compile(String combinationId,String sessionId) throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         Combination combination = combinationRepo.findById(combinationId).orElseThrow(() -> new RuntimeException("找不到对应的编排"));
         List<String> operatorIds = combination.getOperatorIds();
         CodeGenerate codeGenerate = new CodeGenerate();
@@ -195,7 +195,7 @@ public class RunService {
         Object object = clazz.newInstance();
         Method method = clazz.getMethod("run",String.class);
 //        //得到sessionId
-        Object[] sessionId = {"0"};
+
         method.invoke(object,sessionId);
 
     }

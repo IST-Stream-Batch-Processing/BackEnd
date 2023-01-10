@@ -26,9 +26,9 @@ public class RunController {
     }
 
     @ApiOperation(value = "将.java文件编译成.class文件并运行")
-    @GetMapping("/run/{combinationId}")
-    public Result<String> run(@PathVariable("combinationId") String combinationId) throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
-        runService.compile(combinationId);
+    @GetMapping("/run/{combinationId}/{sessionId}")
+    public Result<String> run(@PathVariable("combinationId") String combinationId,@PathVariable("sessionId") String sessionId) throws MalformedURLException, ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        runService.compile(combinationId,sessionId);
         return ResultUtil.success();
     }
 
