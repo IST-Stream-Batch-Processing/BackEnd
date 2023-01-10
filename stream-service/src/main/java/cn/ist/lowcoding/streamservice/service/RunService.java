@@ -127,6 +127,17 @@ public class RunService {
                 fmProcessListState.setOriginalType(originalType);
                 fmProcessListState.generate();
             }
+            else if(name.equals("StreamProcessValueState")){
+                ProcessValueState processValueState = (ProcessValueState) operator;
+                FMProcessValueState fmProcessValueState = new FMProcessValueState();
+                BeanUtils.copyProperties(processValueState, fmProcessValueState);
+                String originalType = fmProcessValueState.getOriginalType();
+                String[] list = originalType.split(",");
+                originalType = list[0];
+                fmProcessValueState.setKeyType("Long");
+                fmProcessValueState.setOriginalType(originalType);
+                fmProcessValueState.generate();
+            }
             else if(name.equals("StreamMapAndKeyByRandom")){
                 MapAndKeyByRandom mapAndKeyByRandom = (MapAndKeyByRandom) operator;
                 FMMapAndKeyByRandom fmMapAndKeyByRandom = new FMMapAndKeyByRandom();

@@ -3,13 +3,14 @@ package cn.ist.lowcoding.streamservice.service;
 import cn.ist.lowcoding.streamservice.model.stream.MapAndKeyByRandom;
 import cn.ist.lowcoding.streamservice.model.stream.MapConstruct;
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateKeyByDataClassRequest;
+import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateMapAndKeyByRandomRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MapAndKeyByRandomService extends OperatorService{
 
-    public String registerMapAndKeyByRandom(CreateKeyByDataClassRequest request) {
+    public String registerMapAndKeyByRandom(CreateMapAndKeyByRandomRequest request) {
         MapAndKeyByRandom mapAndKeyByRandom = new MapAndKeyByRandom();
         BeanUtils.copyProperties(request, mapAndKeyByRandom);
         mapAndKeyByRandom.generateInput();

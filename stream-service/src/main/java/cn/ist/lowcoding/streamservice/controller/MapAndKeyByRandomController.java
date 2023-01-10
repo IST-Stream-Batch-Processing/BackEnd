@@ -3,6 +3,7 @@ package cn.ist.lowcoding.streamservice.controller;
 import cn.ist.lowcoding.common.response.Result;
 import cn.ist.lowcoding.common.util.ResultUtil;
 import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateKeyByDataClassRequest;
+import cn.ist.lowcoding.streamservice.pojo.dto.request.CreateMapAndKeyByRandomRequest;
 import cn.ist.lowcoding.streamservice.service.KeyByDataClassService;
 import cn.ist.lowcoding.streamservice.service.MapAndKeyByRandomService;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +19,7 @@ public class MapAndKeyByRandomController {
 
     @ApiOperation(value = "注册MapAndKeyByRandom算子")
     @PostMapping("/mapAndKeyByRandom")
-    public Result<String> registerMapAndKeyByRandom(@RequestBody CreateKeyByDataClassRequest request){
+    public Result<String> registerMapAndKeyByRandom(@RequestBody CreateMapAndKeyByRandomRequest request){
         String mapAndKeyByRandomId = mapAndKeyByRandomService.registerMapAndKeyByRandom(request);
         return ResultUtil.success(mapAndKeyByRandomId);
     }

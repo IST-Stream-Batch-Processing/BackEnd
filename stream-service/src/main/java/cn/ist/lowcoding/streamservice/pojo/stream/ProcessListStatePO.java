@@ -24,9 +24,9 @@ public class ProcessListStatePO extends OperatorPO{
         return res;
     }
 
-    public static ProcessListStatePO from(ProcessListState timeWindow) {
+    public static ProcessListStatePO from(ProcessListState processListState) {
         ProcessListStatePO res = new ProcessListStatePO();
-        BeanUtils.copyProperties(timeWindow, res);
+        BeanUtils.copyProperties(processListState, res);
         return res;
     }
 }

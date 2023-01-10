@@ -18,7 +18,7 @@ public class StreamCombination${combinationId} {
 
         DataStream<${String}> dataStream0 = env.readTextFile("D:\\BackEnd\\stream-service\\src\\main\\resources\\file\\UserBehavior.csv");
         <#list streamList as stream>
-            <#if stream.name == "StreamProcessListState">
+            <#if stream.name == "StreamProcessListState" || stream.name == "StreamProcessValueState">
                 ${stream.output} dataStream${stream_index+1} = ${stream.name}${stream.id}.process(dataStream${stream_index},sessionId);
                 <#else>
                     ${stream.output} dataStream${stream_index+1} = ${stream.name}${stream.id}.process(dataStream${stream_index});
