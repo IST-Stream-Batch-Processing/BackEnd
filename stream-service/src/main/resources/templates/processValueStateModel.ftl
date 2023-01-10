@@ -40,7 +40,7 @@ public class StreamProcessValueState${operatorId} {
             Timestamp time = new Timestamp(timestamp - 1);
             out.collect(new ${finalType?cap_first}(1,ctx.getCurrentKey(), totalCount));
             WebSocketServer websocketServer = WebSocketServer.getWebSocketServerBySessionId(sessionId);
-            websocketServer.sendMessage("time:"+time+"  "+"totalCount:"+ totalCount);
+            websocketServer.sendMessage("{"+"\n"+"time:"+time+","+"\n"+"totalCount:"+ totalCount+"\n"+"}"+"\n");
             totalCountState.clear();
         }
 
