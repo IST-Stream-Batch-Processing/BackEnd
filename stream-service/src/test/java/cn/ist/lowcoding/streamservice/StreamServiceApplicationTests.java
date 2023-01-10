@@ -2,7 +2,7 @@ package cn.ist.lowcoding.streamservice;
 
 import cn.ist.lowcoding.streamservice.freemaker.*;
 
-import cn.ist.lowcoding.streamservice.generateClass.StreamCombination6390417536e4e2450773b8ce;
+
 import cn.ist.lowcoding.streamservice.model.data.TypeAndIndex;
 import cn.ist.lowcoding.streamservice.model.data.TypeAndName;
 import cn.ist.lowcoding.streamservice.util.CodeGenerate;
